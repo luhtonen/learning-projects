@@ -1,0 +1,29 @@
+1.
+scala> "Hello, REPL!"
+res0: String = Hello, REPL!
+
+2.
+scala> (22.5 * 9/5) + 32
+res1: Double = 72.5
+
+3.
+scala> ((res1 / 2) - 32) * 5/9
+res2: Double = 2.361111111111111
+
+scala> (res1 - 32) * 5/9
+res3: Double = 22.5
+
+4.
+scala> :load Hello.scala
+Loading Hello.scala...
+Greetings from 'Hello.scala'
+
+5.
+scala> :paste
+// Entering paste mode (ctrl-D to finish)
+
+println("Greetings from 'Hello.scala'")
+
+// Exiting paste mode, now interpreting.
+
+Greetings from 'Hello.scala'
