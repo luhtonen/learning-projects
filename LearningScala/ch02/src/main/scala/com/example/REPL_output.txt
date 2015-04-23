@@ -1,0 +1,48 @@
+// Chapter 02
+//-----------
+scala> val x: Int = 5
+x: Int = 5
+
+scala> x
+res0: Int = 5
+
+scala> x * 2
+res1: Int = 10
+
+scala> x / 5
+res2: Int = 1
+
+scala> res0 * res1
+res3: Int = 50
+
+// Values
+//-------
+scala> val x1: Int = 20
+x1: Int = 20
+
+scala> val greeting: String = "Hello, World"
+greeting: String = Hello, World
+
+scala> val atSymbol: Char = '@'
+atSymbol: Char = @
+
+// type inference
+//---------------
+scala> val x2 = 20
+x2: Int = 20
+
+scala> val greeting1 = "Hello, World"
+greeting1: String = Hello, World
+
+scala> val atSymbol1 = '@'
+atSymbol1: Char = @
+
+scala> val x3: Int = "Hello"
+<console>:7: error: type mismatch;
+ found   : String("Hello")
+ required: Int
+       val x3: Int = "Hello"
+                     ^
+
+// Variables
+//----------
