@@ -46,3 +46,21 @@ scala> val x3: Int = "Hello"
 
 // Variables
 //----------
+scala> var x = 5
+x: Int = 5
+
+scala> x = x * 4
+x: Int = 20
+
+scala> x = "What's up?"
+<console>:8: error: type mismatch;
+ found   : String("What\'s up?")
+ required: Int
+       x = "What's up?"
+           ^
+
+scala> var y = 1.5
+y: Double = 1.5
+
+scala> y = 42
+y: Double = 42.0
