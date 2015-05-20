@@ -125,3 +125,29 @@ id: Long = 100
 
 scala> val pi = 3.14159
 pi: Double = 3.14159
+
+// Strings
+scala> val hello = "Hello There"
+hello: String = Hello There
+
+scala> val signature = "With Regards, \nYour friend"
+signature: String =
+With Regards,
+Your friend
+
+scala> val greeting = "Hello, " + "World"
+greeting: String = Hello, World
+
+scala> val matched = (greeting == "Hello, World")
+matched: Boolean = true
+
+scala> val theme = "Na " * 16 + "Batman!"
+theme: String = Na Na Na Na Na Na Na Na Na Na Na Na Na Na Na Na Batman!
+
+scala> val greeting = """She suggested reformatting the file
+     | by replacing tabs (\t) with newlines (\n);
+     | "Why do that?", he asked. """
+greeting: String =
+"She suggested reformatting the file
+by replacing tabs (\t) with newlines (\n);
+"Why do that?", he asked. "
