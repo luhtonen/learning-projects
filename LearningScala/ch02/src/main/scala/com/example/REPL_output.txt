@@ -224,3 +224,17 @@ isValid: Boolean = false
 
 scala> val nada = ()
 nada: Unit = ()
+
+// Tuples
+// ------
+scala> val info = (5, "Korben", true)
+info: (Int, String, Boolean) = (5,Korben,true)
+
+scala> val name = info._2
+name: String = Korben
+
+scala> val red = "red" -> "0xff0000"
+red: (String, String) = (red,0xff0000)
+
+scala> val reversed = red._2 -> red._1
+reversed: (String, String) = (0xff0000,red)
