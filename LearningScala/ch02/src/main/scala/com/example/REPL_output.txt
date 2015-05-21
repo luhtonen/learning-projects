@@ -151,3 +151,25 @@ greeting: String =
 "She suggested reformatting the file
 by replacing tabs (\t) with newlines (\n);
 "Why do that?", he asked. "
+
+// String interpolation
+scala> val approx = 355/113f
+approx: Float = 3.141593
+
+scala> println("Pi, using 355/113, is about " + approx + ".")
+Pi, using 355/113, is about 3.141593.
+
+scala> println(s"Pi, using 355/113, is about $approx.")
+Pi, using 355/113, is about 3.141593.
+
+scala> s"How do you like them ${item}s?"
+res3: String = How do you like them apples?
+
+scala> s"Fish n chips n vinegar, ${"pepper " * 3}salt"
+res4: String = Fish n chips n vinegar, pepper pepper pepper salt
+
+scala> f"I wrote a new $item%.3s today"
+res5: String = I wrote a new app today
+
+scala> f"Enjoying this $item ${355/113.0}%.5f times today"
+res6: String = Enjoying this apple 3.14159 times today
