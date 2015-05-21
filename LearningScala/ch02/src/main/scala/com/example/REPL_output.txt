@@ -186,3 +186,41 @@ amountText: String = 3.14159
 
 scala> val amount = amountText.toDouble
 amount: Double = 3.14159
+
+// An Overview of Scala Types
+// --------------------------
+scala> val c = 'A'
+c: Char = A
+
+scala> val i: Int = c
+i: Int = 65
+
+scala> val t: Char = 116
+t: Char = t
+
+scala> val isTrue = true
+isTrue: Boolean = true
+
+scala> val isFalse = !true
+isFalse: Boolean = false
+
+scala> val unequal = (5 != 6)
+unequal: Boolean = true
+
+scala> val isLess = (5 < 6)
+isLess: Boolean = true
+
+scala> val unequalAndLess = unequal & isLess
+unequalAndLess: Boolean = true
+
+scala> val definitelyFalse = false && unequal
+definitelyFalse: Boolean = false
+
+scala> val zero = 0
+zero: Int = 0
+
+scala> val isValid = zero > 0
+isValid: Boolean = false
+
+scala> val nada = ()
+nada: Unit = ()
