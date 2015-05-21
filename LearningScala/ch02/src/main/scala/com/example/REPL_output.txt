@@ -173,3 +173,16 @@ res5: String = I wrote a new app today
 
 scala> f"Enjoying this $item ${355/113.0}%.5f times today"
 res6: String = Enjoying this apple 3.14159 times today
+
+// Regular expressions
+scala> val input = "Enjoying this apple 3.14159 times today"
+input: String = Enjoying this apple 3.14159 times today
+
+scala> val pattern = """.* apple ([\d.]+) times .*""".r
+pattern: scala.util.matching.Regex = .* apple ([\d.]+) times .*
+
+scala> val pattern(amountText) = input
+amountText: String = 3.14159
+
+scala> val amount = amountText.toDouble
+amount: Double = 3.14159
