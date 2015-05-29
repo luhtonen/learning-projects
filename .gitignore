@@ -1,4 +1,9 @@
-target
 logs
 .idea
 *.iml
+project/project
+project/target
+target
+tmp
+dist
+.cache
