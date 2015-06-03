@@ -113,3 +113,20 @@ scala> response match {
      | }
 Error! Received a null response
 
+Matching Types with Pattern Variables
+-------------------------------------
+scala> val x: Int = 12180
+x: Int = 12180
+
+scala> val y: Any = x
+y: Any = 12180
+
+scala> y match {
+     | case x: String => s"'x'"
+     | case x: Double => f"$x%.2f"
+     | case x: Float => f"$x%.2f"
+     | case x: Long => s"${x}l"
+     | case x: Int => s"${x}i"
+     | }
+res1: String = 12180i
+
