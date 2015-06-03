@@ -70,3 +70,34 @@ scala> val kind = day match {
      | case "SAT" | "SUN" => "weekend"
      | }
 kind: String = weekday
+
+scala> "match me" match { case "nope" => "sorry" }
+scala.MatchError: match me (of class java.lang.String)
+  ... 33 elided
+
+Matching with Wildcard Patterns
+-------------------------------
+scala> val message = "Ok"
+message: String = Ok
+
+scala> val status = message match {
+     | case "Ok" => 200
+     | case other => { 
+     |   println(s"Couldn't parse $other")
+     |   -1
+     | }
+     | }
+status: Int = 200
+
+scala> val message = "Unauthorized"
+message: String = Unauthorized
+
+scala> val status = message match {
+     | case "Ok" => 200
+     | case _ => {
+     |   println(s"Couldn't parse $message")
+     |   -1
+     | }
+     | }
+Couldn't parse Unauthorized
+status: Int = -1
