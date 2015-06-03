@@ -15,3 +15,12 @@ amount: Int = 110
 
 scala> { val a = 1; { val b = a * 2; { val c = b + 4; c } } }
 res0: Int = 6
+
+If Expressions
+--------------
+scala> if ( 47 % 3 > 0) println("Not a multiple of 3")
+Not a multiple of 3
+
+scala> val result = if ( false ) "what does this return?"
+result: Any = ()
+
