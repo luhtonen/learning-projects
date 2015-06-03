@@ -24,3 +24,12 @@ Not a multiple of 3
 scala> val result = if ( false ) "what does this return?"
 result: Any = ()
 
+If-Else Expressions
+-------------------
+scala> val x = 10; val y = 20
+x: Int = 10
+y: Int = 20
+
+scala> val max = if (x > y) x else y
+max: Int = 20
+
