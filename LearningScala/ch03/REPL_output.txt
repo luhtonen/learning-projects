@@ -101,3 +101,15 @@ scala> val status = message match {
      | }
 Couldn't parse Unauthorized
 status: Int = -1
+
+Matching with Pattern Guards
+----------------------------
+scala> val response: String = null
+response: String = null
+
+scala> response match {
+     | case s if s != null => println(s"Received '$s'")
+     | case s => println("Error! Received a null response")
+     | }
+Error! Received a null response
+
