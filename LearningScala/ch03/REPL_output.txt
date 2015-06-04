@@ -174,3 +174,10 @@ Value Binding in Loops
 scala> val powerOf2 = for (i <- 0 to 8; pow = 1 << i) yield pow
 powerOf2: scala.collection.immutable.IndexedSeq[Int] = Vector(1, 2, 4, 8, 16, 32, 64, 128, 256)
 
+While and Do/While Loops
+------------------------
+scala> val x = 0
+x: Int = 0
+
+scala> do println(s"Here I am, x = $x") while (x > 0)
+Here I am, x = 0
