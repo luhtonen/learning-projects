@@ -146,3 +146,18 @@ res4: scala.collection.immutable.IndexedSeq[String] = Vector(Day 1:, Day 2:, Day
 
 scala> for (day <- res4) print(day + ", ")
 Day 1:, Day 2:, Day 3:, Day 4:, Day 5:, Day 6:, Day 7:, 
+
+Iterator Guards
+---------------
+scala> val threes = for (i <- 1 to 20 if i % 3 == 0) yield i
+threes: scala.collection.immutable.IndexedSeq[Int] = Vector(3, 6, 9, 12, 15, 18)
+
+scala> for {
+     | t <- quote.split(",")
+     | if t != null
+     | if t.size > 0
+     | }
+     | { println(t) }
+Faith
+Hope
+Charity
