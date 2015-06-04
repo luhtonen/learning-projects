@@ -161,3 +161,10 @@ scala> for {
 Faith
 Hope
 Charity
+
+Nested Iterators
+----------------
+scala> for { x <- 1 to 2
+     | y <- 1 to 3 }
+     | { print(s"($x,$y) ") }
+(1,1) (1,2) (1,3) (2,1) (2,2) (2,3)
