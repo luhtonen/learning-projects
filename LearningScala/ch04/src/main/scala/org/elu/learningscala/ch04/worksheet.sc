@@ -18,3 +18,9 @@ def log2(d: Double) = println(f"Got value $d%.2f")
 log(2.23535)
 // following format is unofficially deprecated and shouldn't be used
 def log_deprecated(d: Double) { println(f"Got value $d%.2f") }
+
+// Functions with Empty Parentheses
+def hi3(): String = "hi"
+hi3()
+hi3
+
