@@ -28,3 +28,19 @@ hi3
 def formatEuro(amt: Double) =f"€$amt%.2f"
 formatEuro(3.4645)
 formatEuro { val rate = 1.32; 0.235 + 0.7123 + rate * 5.32 }
+
+// Recursive Functions
+def power(x: Int, n: Int): Long = {
+  if (n >= 1) x * power(x, n-1)
+  else 1
+}
+power(2, 8)
+power(2, 1)
+power(2, 0)
+
+@annotation.tailrec
+def power_optimized(x: Int, n: Int, t: Int = 1): Int = {
+  if (n < 1) t
+  else power_optimized(x, n-1, x*t)
+}
+power_optimized(2, 8)
