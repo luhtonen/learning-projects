@@ -44,3 +44,10 @@ def power_optimized(x: Int, n: Int, t: Int = 1): Int = {
   else power_optimized(x, n-1, x*t)
 }
 power_optimized(2, 8)
+
+// Nested Functions
+def max(a: Int, b: Int, c: Int) = {
+  def max(x: Int, y: Int) = if (x > y) x else y
+  max(a, max(b, c))
+}
+max(42, 181, 19)
