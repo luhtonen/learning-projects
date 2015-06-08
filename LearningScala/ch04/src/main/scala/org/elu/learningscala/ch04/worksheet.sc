@@ -71,3 +71,7 @@ def sum(items: Int*): Int = {
 }
 sum(10, 20, 30)
 sum()
+
+// Parameter Groups
+def max(x: Int)(y: Int) = if (x > y) x else y
+val larger = max(20)(39)
