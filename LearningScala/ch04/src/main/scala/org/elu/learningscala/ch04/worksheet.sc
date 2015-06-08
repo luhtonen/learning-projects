@@ -62,3 +62,12 @@ def greet1(prefix: String = "", name: String) = s"$prefix$name"
 val greeting3 = greet1(name = "Paul")
 def greet2(name: String, prefix: String = "") = s"$prefix$name"
 val greet4 = greet2("Ola")
+
+// Vararg Parameters
+def sum(items: Int*): Int = {
+  var total = 0
+  for (i <- items) total += i
+  total
+}
+sum(10, 20, 30)
+sum()
