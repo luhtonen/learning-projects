@@ -56,3 +56,9 @@ max(42, 181, 19)
 def greet(prefix: String, name: String) = s"$prefix $name"
 val greeting1 = greet("Mr", "Brown")
 val greeting2 = greet(name="Brown", prefix="Mr")
+
+// Parameters with Default Values
+def greet1(prefix: String = "", name: String) = s"$prefix$name"
+val greeting3 = greet1(name = "Paul")
+def greet2(name: String, prefix: String = "") = s"$prefix$name"
+val greet4 = greet2("Ola")
