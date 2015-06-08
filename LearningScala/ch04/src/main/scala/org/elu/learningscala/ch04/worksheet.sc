@@ -75,3 +75,12 @@ sum()
 // Parameter Groups
 def max(x: Int)(y: Int) = if (x > y) x else y
 val larger = max(20)(39)
+
+// Type Parameters
+def identity[A](a: A): A = a
+identity[String]("Hello")
+identity[Double](2.717)
+identity("Hello")
+identity(2.717)
+val s = identity("Hello")
+val d = identity(2.717)
