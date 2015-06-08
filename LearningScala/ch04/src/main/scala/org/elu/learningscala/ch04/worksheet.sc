@@ -51,3 +51,8 @@ def max(a: Int, b: Int, c: Int) = {
   max(a, max(b, c))
 }
 max(42, 181, 19)
+
+// Calling Functions with Named Parameters
+def greet(prefix: String, name: String) = s"$prefix $name"
+val greeting1 = greet("Mr", "Brown")
+val greeting2 = greet(name="Brown", prefix="Mr")
