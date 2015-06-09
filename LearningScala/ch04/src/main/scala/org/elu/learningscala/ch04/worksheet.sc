@@ -84,3 +84,16 @@ identity("Hello")
 identity(2.717)
 val s = identity("Hello")
 val d = identity(2.717)
+
+// Methods and Operators
+val s1 = "vacation.jpg"
+val isJPEG = s.endsWith(".jpg")
+
+val d1 = 65.642
+d1.round
+d1.floor
+d1.compare(18.0)
+d1.+(2.721)
+
+d1 compare 18.0
+d1 + 2.721
