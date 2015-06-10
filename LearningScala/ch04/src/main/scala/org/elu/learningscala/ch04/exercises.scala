@@ -47,7 +47,7 @@ def toExponent(value: Double, exponent: Int): Double = {
   if (exponent < 0) {
     result = 1 / result
   }
-  return result
+  result
 }
 "raiseToExponent(2.0, 2.5) = " + raiseToExponent(2.0, 2.5)
 "raiseToExponent(0, 3) = " + raiseToExponent(0.0, 3)
@@ -70,7 +70,7 @@ def toExponent(value: Double, exponent: Int): Double = {
 // returns the result as a point. Hint: this would be a good use for tuples (see “Tuples”
 // on page 25).
 def compare(x1: Double, y1: Double)(x2: Double, y2: Double): (Double, Double) = {
-  return (x1 - x2, y1 - y2)
+  (x1 - x2, y1 - y2)
 }
 compare(1.0, 3.0)(2.0, 2.0)
 
@@ -79,9 +79,9 @@ compare(1.0, 3.0)(2.0, 2.0)
 // type operation.
 def getInt[T](tuple: (T, Any)): (T, Any) = {
   if(tuple._1.isInstanceOf[Int]) {
-    return (tuple._1, tuple._2)
+    (tuple._1, tuple._2)
   } else {
-    return tuple
+    tuple
   }
 }
 getInt(1, "abc")
