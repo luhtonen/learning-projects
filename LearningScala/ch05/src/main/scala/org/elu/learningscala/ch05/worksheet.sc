@@ -18,3 +18,12 @@ maximize(50, 30)
 def logStart() = "=" * 50 + "\nStarting NOW\n" + "=" * 50
 val start: () => String = logStart
 println(start())
+
+// Higher-Order Functions
+def safeStringOp(s: String, f: String => String) = {
+  if (s != null) f(s) else s
+}
+def reverser(s: String) = s.reverse
+safeStringOp(null, reverser)
+safeStringOp("Ready", reverser)
+
