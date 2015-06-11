@@ -27,3 +27,20 @@ def reverser(s: String) = s.reverse
 safeStringOp(null, reverser)
 safeStringOp("Ready", reverser)
 
+// Function Literals
+val doubler = (x: Int) => x * 2
+val doubled = doubler(22)
+
+val greeter = (name: String) => s"Hello, $name"
+val hi = greeter("World")
+
+val maximize2 = (a:Int, b: Int) => if(a > b) a else b
+
+val start2 = () => "=" * 50 + "\nStarting NOW\n" + "=" * 50
+println(start2())
+
+safeStringOp(null, (s: String) => s.reverse)
+safeStringOp("Ready", (s: String) => s.reverse)
+
+safeStringOp(null, s => s.reverse)
+safeStringOp("Ready", s => s.reverse)
