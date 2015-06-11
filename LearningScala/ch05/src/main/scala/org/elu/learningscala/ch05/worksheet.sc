@@ -44,3 +44,20 @@ safeStringOp("Ready", (s: String) => s.reverse)
 
 safeStringOp(null, s => s.reverse)
 safeStringOp("Ready", s => s.reverse)
+
+// Placeholder Syntax
+val doubler2: Int => Int = _ * 2
+
+safeStringOp(null, _.reverse)
+safeStringOp("Ready", _.reverse)
+
+def combination(x: Int, y: Int, f: (Int, Int) => Int) = f(x,y)
+combination(23, 12, _ * _)
+
+def tripleOp(x: Int, y: Int, z: Int, f: (Int, Int, Int) => Int) = f(x, y, z)
+tripleOp(23, 92, 14, _ * _ + _)
+
+def tripleOp2[A,B](a: A, b: A, c: A, f: (A, A, A) => B) = f(a,b,c)
+tripleOp2[Int, Int](23, 92, 14, _ * _ + _)
+tripleOp2[Int, Double](23, 92, 14, 1.0 * _ / _ / _)
+tripleOp2[Int, Boolean](23, 92, 14, _ > _ + _)
