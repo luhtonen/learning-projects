@@ -74,3 +74,12 @@ def factorOf2(x: Int)(y: Int) = y % x == 0
 val isEven = factorOf2(2) _
 isEven(32)
 
+// By-Name Parameters
+def doubles(x: => Int) = {
+  println("Now doubling " + x)
+  x * 2
+}
+doubles(5)
+
+def f(i: Int) = { println(s"Hello from f($i)"); i }
+doubles(f(8))
