@@ -61,3 +61,16 @@ def tripleOp2[A,B](a: A, b: A, c: A, f: (A, A, A) => B) = f(a,b,c)
 tripleOp2[Int, Int](23, 92, 14, _ * _ + _)
 tripleOp2[Int, Double](23, 92, 14, 1.0 * _ / _ / _)
 tripleOp2[Int, Boolean](23, 92, 14, _ > _ + _)
+
+// Partially Applied Functions and Currying
+def factorOf(x: Int, y: Int) = y % x == 0
+val f = factorOf _
+val x = f(7, 20)
+
+val multiplyOf3 = factorOf(3, _: Int)
+multiplyOf3(78)
+
+def factorOf2(x: Int)(y: Int) = y % x == 0
+val isEven = factorOf2(2) _
+isEven(32)
+
