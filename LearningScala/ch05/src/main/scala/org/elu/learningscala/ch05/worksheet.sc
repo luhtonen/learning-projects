@@ -98,3 +98,32 @@ statusHandler(400)
 //  at $anonfun$1.apply(<console>:7)
 //  at $anonfun$1.apply(<console>:7)
 //    ... 33 elided
+
+// Invoking Higher-Order Functions with Function Literal Blocks
+val uuid = java.util.UUID.randomUUID.toString
+val timedUUID = safeStringOp(uuid, { s =>
+  val now = System.currentTimeMillis
+  val timed = s.take(24) + now
+  timed.toUpperCase
+})
+
+def safeStringOp2(s: String)(f: String => String) = {
+  if (s != null) f(s) else s
+}
+val timedUUID2 = safeStringOp2(uuid) { s =>
+  val now = System.currentTimeMillis
+  val timed = s.take(24) + now
+  timed.toUpperCase
+}
+
+def timer[A](f: => A): A = {
+  def now = System.currentTimeMillis
+  val start = now; val a = f; val end = now
+  println(s"Executed in ${end - start} ms")
+  a
+}
+val veryRandomAmount = timer {
+  util.Random.setSeed(System.currentTimeMillis)
+  for (i <- 1 to 100000) util.Random.nextDouble
+  util.Random.nextDouble
+}
