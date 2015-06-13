@@ -83,3 +83,18 @@ doubles(5)
 
 def f(i: Int) = { println(s"Hello from f($i)"); i }
 doubles(f(8))
+
+// Partial Functions
+val statusHandler: Int => String = {
+  case 200 => "Okay"
+  case 400 => "Your Error"
+  case 500 => "Our Error"
+}
+statusHandler(200)
+statusHandler(400)
+// following line results in error
+// scala> statusHandler(401)
+// scala.MatchError: 401 (of class java.lang.Integer)
+//  at $anonfun$1.apply(<console>:7)
+//  at $anonfun$1.apply(<console>:7)
+//    ... 33 elided
