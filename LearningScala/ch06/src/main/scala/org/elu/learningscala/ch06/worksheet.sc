@@ -29,3 +29,41 @@ val cyanRGB = colorMap("green") | colorMap("blue")
 val hasWhite = colorMap.contains("white")
 
 for (pairs <- colorMap) { println(pairs) }
+
+// What’s in a List?
+val oddsAndEvens = List(List(1, 3, 5), List(2, 4, 6))
+val keyValues = List(('A', 65), ('B', 66), ('C', 67))
+
+val primes = List(2, 3, 5, 7, 11, 13)
+val first = primes(0)
+val fourth = primes(3)
+
+val first1 = primes.head
+val remaining = primes.tail
+
+var i = primes
+while(i.nonEmpty) {
+  print(i.head + ", ")
+  i = i.tail
+}
+
+def visit(i: List[Int]): Unit = {
+  if (i.size > 0) {
+    print(i.head + ", ")
+    visit(i.tail)
+  }
+}
+visit(primes)
+
+i = primes
+while(i != Nil) {
+  print(i.head + ", ")
+  i = i.tail
+}
+
+val l: List[Int] = List()
+l == Nil
+val m: List[String] = List("a")
+m.head
+m.tail == Nil
+
