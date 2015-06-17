@@ -67,3 +67,9 @@ val m: List[String] = List("a")
 m.head
 m.tail == Nil
 
+// The Cons Operator
+val numbers1 = 1 :: 2 :: 3 :: Nil
+val first2 = Nil.::(1)
+first2.tail == Nil
+val second = 2 :: first2
+second.tail == first2
