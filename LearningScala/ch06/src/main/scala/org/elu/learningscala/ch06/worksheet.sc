@@ -73,3 +73,12 @@ val first2 = Nil.::(1)
 first2.tail == Nil
 val second = 2 :: first2
 second.tail == first2
+
+// List Arithmetic
+val f = List(23, 8, 14, 21) filter(_ > 18)
+val p = List(1, 2, 3, 4, 5) partition (_ < 3)
+val s = List("apple", "to") sortBy (_.length)
+
+val appended = List(1, 2, 3, 4) :+ 5
+val suffix = appended takeRight 3
+val middle = suffix dropRight 2
