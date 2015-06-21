@@ -128,3 +128,36 @@ val included3 = List(46, 19, 92).foldLeft(false) { (a, i) =>
   if (a) a else i == 19
 }
 val answer1 = List(11.3, 23.5, 7.2).reduceLeft(_ + _)
+
+// Pattern Matching with Collections
+val statuses = List(500, 404)
+val msg = statuses.head match {
+  case x if x < 500 => "okay"
+  case _ => "whoah, an error"
+}
+val msg1 = statuses match {
+  case x if x contains 500 => "has error"
+  case _ => "okay"
+}
+val msg2 = statuses match {
+  case List(404, 500) => "not found & error"
+  case List(500, 404) => "error & not found"
+  case List(200, 200) => "okay"
+  case _ => "not sure what happened"
+}
+val msg3 = statuses match {
+  case List(500, x) => s"Error followed by $x"
+  case List(e, x) => s"$e was followed by $x"
+}
+val head = List('r', 'g', 'b') match {
+  case x :: xs => x
+  case Nil => ' '
+}
+val code = ('h', 204, true) match {
+  case (_, _, false) => 501
+  case ('c', _, true) => 302
+  case ('h', x, true) => x
+  case (c, x, true) =>
+    println(s"Did not expected code $c")
+    x
+}
