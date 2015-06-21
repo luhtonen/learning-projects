@@ -82,3 +82,8 @@ val s = List("apple", "to") sortBy (_.length)
 val appended = List(1, 2, 3, 4) :+ 5
 val suffix = appended takeRight 3
 val middle = suffix dropRight 2
+
+// Mapping Lists
+List(0, 1, 0) collect {case 1 => "ok"}
+List("milk,tea") flatMap(_.split(','))
+List("milk", "tea") map(_.toUpperCase)
