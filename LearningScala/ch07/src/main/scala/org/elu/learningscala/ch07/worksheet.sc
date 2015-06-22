@@ -23,4 +23,4 @@ val s = b.toSet
 val b1 = Set.newBuilder[Char]
 b1 += 'h'
 b1 ++= List('e', 'l', 'l', 'o')
-val helloSet = b.result
+val helloSet = b1.result()
