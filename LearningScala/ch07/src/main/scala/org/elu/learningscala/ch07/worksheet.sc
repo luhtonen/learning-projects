@@ -18,3 +18,9 @@ val n1 = b.toMap
 b += ("GOOG" -> 521)
 val l1 = b.toList
 val s = b.toSet
+
+// Using Collection Builders
+val b1 = Set.newBuilder[Char]
+b1 += 'h'
+b1 ++= List('e', 'l', 'l', 'o')
+val helloSet = b.result
