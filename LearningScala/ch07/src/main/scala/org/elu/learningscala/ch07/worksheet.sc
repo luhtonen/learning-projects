@@ -32,3 +32,8 @@ colors
 println("very purple: " + colors)
 val files = new java.io.File(".").listFiles()
 val scala = files map (_.getName) filter (_ endsWith "scala")
+
+// Seq and Sequences
+val inks = Seq('C', 'M', 'Y', 'K')
+
+val hi = "Hello, " ++ "worldly" take 12 replaceAll ("w", "W")
