@@ -83,3 +83,46 @@ val exactSize = filtered filter (_.size > 15) map (_.size)
 def nextOption = if (util.Random.nextInt > 0) Some(1) else None
 val ab = nextOption
 val ba = nextOption
+
+// Try Collections
+// throw new Exception("No DB connection, exiting...")
+// previous line throws exception:
+// java.lang.Exception: No DB connection, exiting...
+//   at #worksheet#.#worksheet#(worksheet.sc0.tmp:88)
+
+def loopAndFail(end: Int, failAt: Int): Int = {
+  for (i <- 1 to end) {
+    println(s"$i) ")
+    if (i == failAt) throw new Exception("too many iterations")
+  }
+  end
+}
+// loopAndFail(10, 3)
+// this method call prints out first 3 values and then throws excetion
+// 1)
+// 2)
+// 3)
+//java.lang.Exception: too many iterations
+//  at org.elu.learningscala.ch07.A$A50$A$A50$$anonfun$loopAndFail$1.apply$mcVI$sp(worksheet.sc0.tmp:96)
+//  at scala.collection.immutable.Range.foreach$mVc$sp(worksheet.sc0.tmp:162)
+//  at org.elu.learningscala.ch07.A$A50$A$A50.loopAndFail(worksheet.sc0.tmp:94)
+//  at #worksheet#.#worksheet#(worksheet.sc0.tmp:100)
+
+val t1 = util.Try(loopAndFail(2, 3))
+val t2 = util.Try{ loopAndFail(4, 2) }
+
+def nextError = util.Try{ 1 / util.Random.nextInt(2) }
+val xy = nextError
+val yx = nextError
+val xx = nextError
+val yy = nextError
+
+val input = " 123 "
+val result = util.Try(input.toInt) orElse util.Try(input.trim.toInt)
+result foreach{ r => println(s"Parsed '$input' to $r!") }
+val xxx = result match {
+  case util.Success(x1) => Some(x1)
+  case util.Failure(ex) =>
+    println(s"Couldn't parse input '$input'")
+    None
+}
