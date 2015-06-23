@@ -37,3 +37,17 @@ val scala = files map (_.getName) filter (_ endsWith "scala")
 val inks = Seq('C', 'M', 'Y', 'K')
 
 val hi = "Hello, " ++ "worldly" take 12 replaceAll ("w", "W")
+
+// Streams
+def inc(i: Int): Stream[Int] = Stream.cons(i, inc(i+1))
+val s1 = inc(1)
+val l2 = s1.take(5).toList
+
+def inc1(head: Int): Stream[Int] = head #:: inc1(head + 1)
+inc1(10).take(10).toList
+
+def to(head: Char, end: Char): Stream[Char] = head > end match {
+  case true => Stream.empty
+  case false => head #:: to((head + 1).toChar, end)
+}
+val hexChars = to('A', 'F').take(20).toList
