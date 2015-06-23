@@ -51,3 +51,35 @@ def to(head: Char, end: Char): Stream[Char] = head > end match {
   case false => head #:: to((head + 1).toChar, end)
 }
 val hexChars = to('A', 'F').take(20).toList
+
+// Option Collections
+val x: String = "Indeed"
+val a = Option(x)
+val y:String = null
+val b2 = Option(y)
+
+println(s"a is defined? ${a.isDefined}")
+println(s"b2 is not defined? ${b2.isEmpty}")
+
+def divide(amt: Double, divisor: Double): Option[Double] = {
+  if (divisor == 0) None
+  else Option(amt / divisor)
+}
+val legit = divide(5, 2)
+val illegal = divide(3, 0)
+
+val odds = List(1, 3, 5)
+val firstOdd = odds.headOption
+val evens = odds filter (_ % 2 == 0)
+val firstEvens = evens.headOption
+
+val words = List("risible", "scavenger", "gist")
+val uppercase = words find (w => w == w.toUpperCase)
+val lowercase = words find (w => w == w.toLowerCase)
+
+val filtered = lowercase filter (_ endsWith "ible") map (_.toUpperCase)
+val exactSize = filtered filter (_.size > 15) map (_.size)
+
+def nextOption = if (util.Random.nextInt > 0) Some(1) else None
+val ab = nextOption
+val ba = nextOption
