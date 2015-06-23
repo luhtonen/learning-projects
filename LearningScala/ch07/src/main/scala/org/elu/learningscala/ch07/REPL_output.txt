@@ -1,0 +1,61 @@
+// Future Collections
+// ==================
+scala> import concurrent.ExecutionContext.Implicits.global
+import concurrent.ExecutionContext.Implicits.global
+
+scala> val f = concurrent.Future { println("hi") }
+hi
+f: scala.concurrent.Future[Unit] = scala.concurrent.impl.Promise$DefaultPromise@5119fb47
+
+scala> val f = concurrent.Future { Thread.sleep(5000); println("hi") }
+f: scala.concurrent.Future[Unit] = scala.concurrent.impl.Promise$DefaultPromise@27ff5d15
+
+scala> println("waiting")
+waiting
+
+scala> hi
+
+// Handling futures asynchronously
+// -------------------------------
+scala> import concurrent.Future
+import concurrent.Future
+
+scala> def nextFtr(i: Int = 0) = Future {
+     |   def rand(x: Int) = util.Random.nextInt(x)
+     |
+     |   Thread.sleep(rand(5000))
+     |   if (rand(3) > 0) (i + 1) else throw new Exception
+     | }
+nextFtr: (i: Int)scala.concurrent.Future[Int]
+
+scala> def cityTemp(name: String): Double = {
+     |   val url = "http://api.openweathermap.org/data/2.5/weather"
+     |   val cityUrl = s"$url?q=$name&units=metric"
+     |   val json = io.Source.fromURL(cityUrl).mkString.trim
+     |   val pattern = """.*"temp":([\d.]+).*""".r
+     |   val pattern(temp) = json
+     |   temp.toDouble
+     | }
+cityTemp: (name: String)Double
+
+scala> val cityTemps = Future sequence Seq(
+     |   Future(cityTemp("Fresno")), Future(cityTemp("Tempe"))
+     | )
+cityTemps: scala.concurrent.Future[Seq[Double]] = scala.concurrent.impl.Promise$DefaultPromise@27a5328c
+
+scala> cityTemps onSuccess {
+     |   case Seq(x,y) if x > y => println(s"Fresno is warmer: $x K")
+     |   case Seq(x,y) if y > x => println(s"Tempe is warmer: $y K")
+     | }
+Tempe is warmer: 311.177 K
+
+// Handling futures synchronously
+// ------------------------------
+scala> import concurrent.duration._
+import concurrent.duration._
+
+scala> val maxTime = Duration(10, SECONDS)
+maxTime: scala.concurrent.duration.FiniteDuration = 10 seconds
+
+scala> val amount = concurrent.Await.result(nextFtr(5), maxTime)
+amount: Int = 6
