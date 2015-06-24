@@ -54,3 +54,36 @@ val bb: B = new B
 
 val misc = List(new C, new A, new B)
 val messages = misc.map(_.hi).distinct.sorted
+
+// Defining Classes
+// Defining a Class with Input Parameters
+class Car(val make: String, var reserved: Boolean) {
+  def reserve(r: Boolean): Unit = { reserved = r }
+}
+val t = new Car("Volvo", false)
+t.reserve(true)
+println(s"My ${t.make} is now reserved? ${t.reserved}")
+
+val t2 = new Car(reserved = false, make = "Tesla")
+println(t2.make)
+
+class Lotus(val color: String, reserved: Boolean) extends Car("Lotus", reserved)
+val l = new Lotus("Silver", false)
+println(s"Requested a ${l.color} ${l.make}")
+
+// Defining a Class with Input Parameters and Default Values
+class Car1(val make: String, var reserved: Boolean = true,
+            val year: Int = 2015) {
+  override def toString = s"$year $make, reserved = $reserved"
+}
+val a1 = new Car1("Acura")
+val l1 = new Car1("Lexus", year = 2010)
+val p1 = new Car1(reserved = false, make = "Porsche")
+
+// Defining a Class with Type Parameters
+class Singular[A](element: A) extends Traversable[A] {
+  def foreach[B](f: A => B) = f(element)
+}
+val p = new Singular("Planes")
+p foreach println
+val name: String = p.head
