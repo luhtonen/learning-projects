@@ -87,3 +87,43 @@ class Singular[A](element: A) extends Traversable[A] {
 val p = new Singular("Planes")
 p foreach println
 val name: String = p.head
+
+// More Class Types
+// Abstract Classes
+abstract class Car2 {
+  val year: Int
+  val automatic: Boolean = true
+  def color: String
+}
+// new Car2()
+// this call causes an error
+// <console>:9: error: class Car2 is abstract; cannot be instantiated
+//   new Car2()
+//   ^
+
+class RedMini(val year: Int) extends Car2 {
+  def color = "Red"
+}
+val m: Car2 = new RedMini(2005)
+
+class Mini(val year: Int, val color: String) extends Car2
+val redMini: Car2 = new Mini(2005, "Red")
+println(s"Got a ${redMini.color} Mini")
+
+// Anonymous Classes
+abstract class Listener { def trigger() }
+val myListener = new Listener {
+  override def trigger() { println(s"Trigger at ${new java.util.Date}") }
+}
+myListener.trigger()
+
+class Listening {
+  var listener: Listener = null
+  def register(l: Listener) { listener = l }
+  def sendNotification() { listener.trigger() }
+}
+val notification = new Listening()
+notification.register(new Listener {
+  def trigger() { println(s"Triggered at ${new java.util.Date}") }
+})
+notification.sendNotification()
