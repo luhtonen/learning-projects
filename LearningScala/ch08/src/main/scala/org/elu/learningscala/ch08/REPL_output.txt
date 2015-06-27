@@ -1,0 +1,32 @@
+// Privacy Access Modifiers
+scala> :paste -raw
+// Entering paste mode (ctrl-D to finish)
+
+package org.elu {
+  private[elu] class Config {
+    val url = "http://localhost"
+  }
+
+  class Authentication {
+    private[this] val password = "1234"
+    def validate = password.length > 0
+  }
+
+  class Test {
+    println(s"url = ${new Config().url}")
+  }
+}
+
+// Exiting paste mode, now interpreting.
+
+scala> val valid = new org.elu.Authentication().validate
+valid: Boolean = true
+
+scala> new org.elu.Test
+url = http://localhost
+res0: org.elu.Test = org.elu.Test@22ff4249
+
+scala> new org.elu.Config
+<console>:8: error: class Config in package elu cannot be accessed in package org.elu
+              new org.elu.Config
+                          ^

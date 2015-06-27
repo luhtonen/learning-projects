@@ -1,0 +1,4 @@
+// Packages
+$ scalac src/main/scala/org/elu/learningscala/ch08/Config.scala -d target
+$ ls target/org/elu/learningscala/ch08/Config.class
+target/org/elu/learningscala/ch08/Config.class
