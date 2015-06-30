@@ -1,0 +1,16 @@
+// Command-Line Applications with Objects
+$ scalac src/main/scala/org/elu/learningscala/ch09/Date.scala -d target
+$ scala -classpath target org.elu.learningscala.ch09.Date
+Mon Jun 29 08:28:08 CEST 2015
+
+$ scalac src/main/scala/org/elu/learningscala/ch09/Cat.scala -d target
+$ scala -classpath target org.elu.learningscala.ch09.Cat src/main/scala/org/elu/learningscala/ch09/Date.scala
+package org.elu.learningscala.ch09
+
+/** Created by luhtonen on 29/06/15. */
+object Date {
+  def main(args: Array[String]): Unit = {
+    println(new java.util.Date)
+  }
+}
+
