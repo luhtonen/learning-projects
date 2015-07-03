@@ -27,3 +27,19 @@ class Base { var i = 10 }; class Sub extends Base
 def increment[B <: Base](b: Base) = { b.i += 1; b}
 
 val l: List[Base] = List[Sub]()
+
+// Tuple and Function Value Classes
+val x: (Int, Int) = Tuple2(10, 20)
+println("Does the arity = 2? " + (x.productArity == 2))
+
+val hello1 = (n: String) => s"Hello, $n"
+val h1 = hello1("Function literals")
+val hello2 = new Function1[String, String] {
+  def apply(n: String) = s"Hello $n"
+}
+println(s"hello1 = $hello1, hello2 = $hello2")
+
+val doubler = (i: Int) => i * 2
+val plus3 = (i: Int) => i + 3
+val prepend = (doubler compose plus3)(1)
+val append = (doubler andThen plus3)(1)
