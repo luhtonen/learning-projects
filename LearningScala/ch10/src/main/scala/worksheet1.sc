@@ -62,3 +62,12 @@ case class USD(amount: Double) {
   def print = Doubly.print(amount)
 }
 new USD(81.924).print
+
+// Implicit Classes
+object IntUtils {
+  implicit class Fishies(val x: Int) {
+    def fishes = "Fish" * x
+  }
+}
+import IntUtils._
+println(3.fishes)
