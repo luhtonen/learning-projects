@@ -1,0 +1,30 @@
+$ activator
+[info] Loading project definition from /<snip>/learning-projects/scala/PlayForScala/ch01/hello/project
+[info] Updating {file:/<snip>/learning-projects/scala/PlayForScala/ch01/hello/project/}hello-build...
+[info] Resolving org.fusesource.jansi#jansi;1.4 ...
+[info] Done updating.
+[info] Set current project to hello (in build file:/<snip>/learning-projects/scala/PlayForScala/ch01/hello/)
+[hello] $ compile
+[success] Total time: 1 s, completed Jul 7, 2015 6:30:21 PM
+[hello] $ console
+[info] Starting scala interpreter...
+[info]
+Welcome to Scala version 2.11.6 (Java HotSpot(TM) 64-Bit Server VM, Java 1.8.0_20).
+Type in expressions to have them evaluated.
+Type :help for more information.
+
+scala> views.html.hello.render("Play!")
+res1: play.twirl.api.HtmlFormat.Appendable =
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hello</title>
+</head>
+<body>
+  <h1>Hello, <em>Play!</em></h1>
+</body>
+</html>
+
+scala>
