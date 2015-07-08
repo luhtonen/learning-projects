@@ -5,3 +5,12 @@ name = Nimi
 description = Kuvaus
 
 products.details = Tuote: {0}
+
+products.form = Tuotetiedot
+products.new = (uusi)
+products.new.command = Uusi
+products.new.submit = Lisää
+products.new.success = Onnistunnesti lisätty tuote {0}.
+
+validation.errors = Korjaa virheet lomakkeessa.
+validation.ean.duplicate = Tuote tällaisella EAN-koodilla on jo olemassa

@@ -5,3 +5,12 @@ name = Nome
 description = Descrizione
 
 products.details = Prodotto: {0}
+
+products.form = Dettagli prodotto
+products.new = (nuovo)
+products.new.command = Nuovo
+products.new.submit = Aggiungi
+products.new.success = Prodotto è stato aggiunto {0}.
+
+validation.errors = Si prega di correggere gli errori nel modulo.
+validation.ean.duplicate = Un prodotto con esiste già questo codice EAN
