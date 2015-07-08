@@ -28,7 +28,7 @@ div.screenshot {
     padding-left: 20px;
 }
 
-.navbar .nav > li > a {
+.navbar-nav > li > a {
     color: #bbb;
 }
 
@@ -97,6 +97,10 @@ dl.products {
 
 dt {
     clear: right;
+}
+
+dd {
+    margin-left: 10px;
 }
 
 .barcode {
