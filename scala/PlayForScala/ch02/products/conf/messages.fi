@@ -7,6 +7,7 @@ description = Kuvaus
 products.details = Tuote: {0}
 
 products.form = Tuotetiedot
+products.list.navigation = Kaikki tuotteet
 products.new = (uusi)
 products.new.command = Uusi
 products.new.submit = Lisää

@@ -7,6 +7,7 @@ description = Descripción
 products.details = Producto: {0}
 
 products.form = Detalles del producto
+products.list.navigation = Todos los productos
 products.new = (nuevo)
 products.new.command = Añadir
 products.new.submit = Añadir
