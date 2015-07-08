@@ -12,7 +12,8 @@ libraryDependencies ++= Seq(
   ws,
   specs2 % Test,
   "org.webjars" %% "webjars-play" % "2.4.0-1",
-  "org.webjars" % "bootstrap" % "3.3.5"
+  "org.webjars" % "bootstrap" % "3.3.5",
+  "net.sf.barcode4j" % "barcode4j" % "2.1"
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
