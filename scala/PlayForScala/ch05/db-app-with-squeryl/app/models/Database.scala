@@ -10,10 +10,10 @@ object Database extends Schema {
   val warehousesTable = table[Warehouse]("warehouse")
 
   val productToStockItems = oneToManyRelation(productsTable, stockItemsTable)
-    .via((p, s) => p.id === s.product)
+    .via((p, s) => p.id === s.productId)
 
   val warehouseToStockItems = oneToManyRelation(warehousesTable, stockItemsTable)
-    .via((w, s) => w.id === s.location)
+    .via((w, s) => w.id === s.warehouseId)
 
   on(productsTable) { p => declare {
     p.id is autoIncremented

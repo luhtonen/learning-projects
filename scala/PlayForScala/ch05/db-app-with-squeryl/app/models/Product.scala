@@ -22,9 +22,9 @@ object Product {
 
   def productsInWarehouse(warehouse: Warehouse) = {
     join(productsTable, stockItemsTable)((product, stockItem) =>
-      where(stockItem.location === warehouse.id)
+      where(stockItem.warehouseId === warehouse.id)
         .select(product)
-        .on(stockItem.product === product.id)
+        .on(stockItem.productId === product.id)
     )
   }
 
@@ -60,6 +60,6 @@ object Product {
   }
 
   def getLargeStockQ(product: Product, quantity: Long) = from(product.stockItems) (s =>
-    where(s.quatity gt quantity) select s
+    where(s.quantity gt quantity) select s
   )
 }
