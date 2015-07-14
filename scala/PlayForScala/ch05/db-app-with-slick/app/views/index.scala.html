@@ -1,7 +1,35 @@
-@(message: String)
+@(products: Seq[Product])
 
-@main("Welcome to Play") {
-
-    @play20.welcome(message)
-
+@main("Product database") {
+    <div>
+        <h2>Insert product here:</h2>
+        <form action="/insert" method="POST">
+          <input name="ean" type="text" placeholder="Product EAN"/>
+          <input name="name" type="text" placeholder="Product name">
+          <textarea name="description" placeholder="Product description"></textarea>
+          <input type="submit">
+        </form>
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>EAN</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(product <- products) {
+              <tr>
+                <td>@product.id</td>
+                <td>@product.ean</td>
+                <td>@product.name</td>
+                <td>@product.description</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
 }
