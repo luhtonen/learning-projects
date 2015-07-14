@@ -1,10 +1,13 @@
 package models
 
 import org.squeryl.PrimitiveTypeMode._
+import org.squeryl.dsl.OneToMany
 import org.squeryl.{Query, KeyedEntity}
 
 /** Created by luhtonen on 13/07/15. */
-case class Product(id: Long, ean: Long, name: String, description: String) extends KeyedEntity[Long]
+case class Product(id: Long, ean: Long, name: String, description: String) extends KeyedEntity[Long] {
+  lazy val stockItems: OneToMany[StockItem] = Database.productToStockItems.left(this)
+}
 
 object Product {
   import Database.{productsTable, stockItemsTable}
@@ -39,4 +42,24 @@ object Product {
   def update(product: Product) {
     inTransaction { productsTable.update(product) }
   }
+
+  def addNewProductGood(product: Product, stockItem: StockItem): Unit = {
+    transaction {
+      productsTable.insert(product)
+      stockItemsTable.insert(stockItem)
+    }
+  }
+
+  def addNewProductBad(product: Product, stockItem: StockItem): Unit = {
+    productsTable.insert(product)
+    stockItemsTable.insert(stockItem)
+  }
+
+  def getStockItems(product: Product) = inTransaction {
+    product.stockItems.toList
+  }
+
+  def getLargeStockQ(product: Product, quantity: Long) = from(product.stockItems) (s =>
+    where(s.quatity gt quantity) select s
+  )
 }
