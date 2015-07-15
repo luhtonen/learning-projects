@@ -20,7 +20,7 @@
             </tr>
           </thead>
           <tbody>
-            @for(product <- products) {
+            @products.map { product =>
               <tr>
                 <td>@product.id</td>
                 <td>@product.ean</td>
