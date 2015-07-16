@@ -1,4 +1,4 @@
-jQuery($) ->
+jQuery ($) ->
 
   $table = $('.container table')
   productListUrl = $table.data('list')
