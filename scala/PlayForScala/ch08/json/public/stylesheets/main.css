@@ -1,7 +1,6 @@
 body { color:black; }
 body, p, label { font-size:15px; }
 .screenshot { width: 800px; margin:20px; background-color:#D0E7EF; }
-.navbar-fixed-top, .navbar-fixed-bottom { position:relative; }
 .navbar-fixed-top .navbar-inner { padding-left:20px; }
 .navbar .nav > li > a { color:#bbb; }
 .screenshot > .container { width: 760px; padding: 20px; }
