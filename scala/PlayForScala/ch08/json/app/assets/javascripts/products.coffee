@@ -25,7 +25,7 @@ jQuery ($) ->
 
   saveRow = ($row) ->
 
-    [ean, name, description] = $row.children().map -> $this.text()
+    [ean, name, description] = $row.children().map -> $(this).text()
     product =
       ean: parseInt(ean)
       name: name
