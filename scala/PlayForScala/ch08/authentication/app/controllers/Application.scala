@@ -1,5 +1,6 @@
 package controllers
 
+import play.api.http.HeaderNames
 import play.api.mvc._
 import play.mvc.Http
 
@@ -28,8 +29,9 @@ class Application extends Controller {
           } else {
             Unauthorized("Invalid user name or password")
           }
-      }.getOrElse{
-        Unauthorized("No user name and password provided")
+      }.getOrElse {
+        val authentication = (HeaderNames.WWW_AUTHENTICATE, "Basic")
+        Unauthorized.withHeaders(authentication)
       }
     }
   }
@@ -48,7 +50,7 @@ class Application extends Controller {
     headers.get(Http.HeaderNames.AUTHORIZATION).map { header =>
       val BasicHeader = "Basic (.*)".r
       header match {
-        case BasicHeader(base64) => {
+        case BasicHeader(base64) =>
           try {
             import org.apache.commons.codec.binary.Base64
             val decodedBytes = Base64.decodeBase64(base64.getBytes)
@@ -58,7 +60,6 @@ class Application extends Controller {
               case _ => Left(BadRequest("Invalid basic authentication"))
             }
           }
-        }
         case _ => Left(BadRequest("Bad Authorization header"))
       }
     }
