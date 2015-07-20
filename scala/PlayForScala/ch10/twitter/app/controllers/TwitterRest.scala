@@ -25,6 +25,6 @@ class TwitterRest @Inject() (ws: WSClient, twitter: Twitter) extends Controller 
       .get()
     val response = Await.result(responseFuture, 10 seconds)
     val tweets = (Json.parse(response.body) \ "statuses").as[Seq[Tweet]]
-    Ok(views.html.twitterrest.tweetlist(tweets))
+    Ok(views.html.twitterrest.tweetlist("Blocking tweets", tweets))
   }
 }

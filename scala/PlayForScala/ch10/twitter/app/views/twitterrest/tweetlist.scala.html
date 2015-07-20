@@ -1,10 +1,11 @@
-@(tweets: Seq[Tweet])
+@(title: String, tweets: Seq[Tweet])
 
 @main("Tweets!") {
-    <h2>Tweets:</h2>
+    <h2>@title</h2>
     @tweets.map { tweet =>
-      <ul class="list-group">
-          <li class="list-group-item"><span>@tweet.from</span>: @tweet.text</li>
-      </ul>
+      <div class="list-group-item">
+          <h4 class="list-group-item-heading">@tweet.from</h4>
+          <p class="list-group-item-text">@tweet.text</p>
+      </div>
     }
 }
