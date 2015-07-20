@@ -9,3 +9,4 @@ dist
 .cache
 
 *.class
+scala/PlayForScala/ch10/twitter/conf/personal.conf
