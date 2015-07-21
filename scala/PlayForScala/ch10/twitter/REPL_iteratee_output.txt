@@ -1,5 +1,16 @@
-Experiments with Iteratee
--------------------------
+// Experiments with Iteratee
+// -------------------------
+// Commands should be run inside Play project
+>activator
+[info] Loading project definition from ... <snip>
+
+$ console
+[info] Starting scala interpreter...
+[info]
+Welcome to Scala version 2.11.6 (Java HotSpot(TM) 64-Bit Server VM, Java 1.8.0_45).
+Type in expressions to have them evaluated.
+Type :help for more information.
+
 scala> import play.api.libs.iteratee.Iteratee
 import play.api.libs.iteratee.Iteratee
 
