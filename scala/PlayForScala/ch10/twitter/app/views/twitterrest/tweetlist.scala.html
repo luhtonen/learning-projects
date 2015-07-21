@@ -1,6 +1,6 @@
 @(title: String, tweets: Seq[Tweet])
 
-@main("Tweets!") {
+@main("Tweets!", tab=title.split(" ")(0).toLowerCase) {
     <h2>@title</h2>
     @tweets.map { tweet =>
       <div class="list-group-item">
