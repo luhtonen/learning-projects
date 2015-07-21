@@ -5,6 +5,6 @@ import play.api.mvc._
 class Application extends Controller {
 
   def index = Action {
-    Redirect(routes.TwitterRest.blocking())
+    Redirect(routes.TwitterRest.caching())
   }
 }
