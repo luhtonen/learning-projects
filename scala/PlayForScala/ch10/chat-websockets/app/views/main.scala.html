@@ -9,8 +9,16 @@
         <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))'></script>
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+        <script src="@controllers.routes.Application.jsRoutes()" type="text/javascript"></script>
     </head>
     <body>
+        <div class="chat-masthead">
+            <div class="container">
+                <nav>
+                    <div class="chat-nav-item">@title</div>
+                </nav>
+            </div>
+        </div>
         @content
     </body>
 </html>

@@ -1,15 +1,22 @@
 @(title: String)
 
 @main(title) {
-  <form id="joinform" method="GET">
-    <label for="nick">Your nick</label>
-    <input type="text" id="nick">
-    <button type="submit" class="btn btn-info">Join</button>
-  </form>
+  <div class="container chat-container">
+    <div class="row">
+      <form id="joinform" method="GET" class="form-inline">
+        <div class="form-group">
+          <label for="nick">Your nick</label>
+          <input type="text" id="nick" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-info">Join</button>
+      </form>
+    </div>
+  </div>
   <script type="text/javascript">
     $(function() {
       $('#joinform').submit(function() {
-        // todo execute routes.Chat.showRoom($('#nick'))
+        var nick = $('#nick').val();
+        $(this).attr('action', jsRoutes.controllers.Chat.showRoom(nick).url);
       });
     })
   </script>

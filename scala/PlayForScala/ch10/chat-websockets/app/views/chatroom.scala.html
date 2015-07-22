@@ -1,12 +1,14 @@
 @(title: String, nick: String)(implicit request: RequestHeader)
 
 @main(title) {
+  <div class="container">
   <h2>Chatroom - You are @nick</h2>
-  <form id="chatform">
-    <input id="text" placeholder="Say something...">
-    <button type="submit" class="btn btn-info"></button>
+  <form id="chatform" class="form-inline">
+    <input id="text" class="form-control" placeholder="Say something...">
+    <button type="submit" class="btn btn-info">Say</button>
   </form>
-  <ul id="messages"></ul>
+  <ul class="chat" id="messages"></ul>
+  </div>
 
   <script type="text/javascript">
     $(function() {

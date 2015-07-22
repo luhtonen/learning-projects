@@ -8,6 +8,9 @@ GET        /                         controllers.Application.index
 GET        /room/:nick               controllers.Chat.showRoom(nick)
 GET        /room/socket/:nick        controllers.Chat.chatSocket(nick)
 
+# Javascript Router
+GET        /javascriptRoutes         controllers.Application.jsRoutes
+
 # Map static resources from the /public folder to the /assets URL path
 GET        /assets/*file             controllers.Assets.versioned(path="/public", file: Asset)
 GET        /webjars/*file            controllers.WebJarAssets.at(file)
