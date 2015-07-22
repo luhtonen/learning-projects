@@ -1,0 +1,16 @@
+@(title: String)
+
+@main(title) {
+  <form id="joinform" method="GET">
+    <label for="nick">Your nick</label>
+    <input type="text" id="nick">
+    <button type="submit" class="btn btn-info">Join</button>
+  </form>
+  <script type="text/javascript">
+    $(function() {
+      $('#joinform').submit(function() {
+        // todo execute routes.Chat.showRoom($('#nick'))
+      });
+    })
+  </script>
+}

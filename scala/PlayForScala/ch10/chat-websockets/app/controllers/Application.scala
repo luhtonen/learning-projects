@@ -5,7 +5,7 @@ import play.api.mvc._
 class Application extends Controller {
 
   def index = Action {
-    Ok(views.html.chat("Chat"))
+    Ok(views.html.index("Join Chat"))
   }
 
 }
