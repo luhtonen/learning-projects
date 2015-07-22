@@ -12,7 +12,7 @@
 
   <script type="text/javascript">
     $(function() {
-      ws = new WebSocket("@routes.Chat.chatSocket(nick).webSocketURL()");
+      var ws = new WebSocket("@routes.Chat.chatSocket(nick).webSocketURL()");
       ws.onmessage = function(msg) {
         var data = JSON.parse(msg.data);
         var el = $('<div class="chat-body clearfix"><span class="header chat-header"></span><p></p></div>');
@@ -22,8 +22,9 @@
       };
 
       $('#chatform').submit(function() {
-        ws.send($('#text').val());
-        $('#text').val("").focus();
+        var text = $('#text');
+        ws.send(text.val());
+        text.val("").focus();
         return false;
       });
     })
