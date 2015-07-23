@@ -25,6 +25,8 @@ module.exports = function (grunt) {
     dist: 'dist'
   };
 
+  grunt.loadNpmTasks('grunt-connect-proxy');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -75,11 +77,20 @@ module.exports = function (grunt) {
         hostname: 'localhost',
         livereload: 35729
       },
+      proxies: [
+        {
+          context: '/app',
+          host: 'localhost',
+          port: 9090,
+          changeOrigin: true
+        }
+      ],
       livereload: {
         options: {
           open: true,
           middleware: function (connect) {
             return [
+              require('grunt-connect-proxy/lib/utils').proxyRequest,
               connect.static('.tmp'),
               connect().use(
                 '/bower_components',
@@ -419,6 +430,7 @@ module.exports = function (grunt) {
       'wiredep',
       'concurrent:server',
       'autoprefixer:server',
+      'configureProxies:server',
       'connect:livereload',
       'watch'
     ]);
