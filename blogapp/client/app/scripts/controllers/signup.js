@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name clientApp.controller:AboutCtrl
+ * @name clientApp.controller:SignupCtrl
  * @description
- * # AboutCtrl
+ * # SignupCtrl
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('AboutCtrl', function () {
+  .controller('SignupCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
