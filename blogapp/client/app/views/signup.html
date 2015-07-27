@@ -1,1 +1,13 @@
-<p>This is the signup view.</p>
+<form name="signupForm" ng-submit="signup()" oninvalid>
+  <div>
+    <label for="email">Email</label>
+    <input name="email" class="form-control" type="email" id="email" placeholder="Email"
+      na-model="email">
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input name="password" class="form-control" type="password" id="password" placeholder="Password"
+      ng-model="password">
+  </div>
+  <button type="submit" class="btn btn-primary">Sign up!</button>
+</form>

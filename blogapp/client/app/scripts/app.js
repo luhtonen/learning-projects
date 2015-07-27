@@ -1,5 +1,4 @@
 'use strict';
-'use strict';
 
 /**
  * @ngdoc overview
@@ -24,6 +23,10 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
+      })
+      .when('/signup', {
+        templateUrl: 'views/signup.html',
+        controller: 'SignupCtrl'
       })
       .otherwise({
         redirectTo: '/'
