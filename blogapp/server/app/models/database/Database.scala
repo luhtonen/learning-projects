@@ -6,6 +6,8 @@ import models._
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.driver.JdbcProfile
 
+import scala.concurrent.Future
+
 /** Created by luhtonen on 29/07/15. */
 class Database @Inject()(protected val dbConfigProvider: DatabaseConfigProvider) extends HasDatabaseConfigProvider[JdbcProfile] {
   import driver.api._
@@ -14,7 +16,7 @@ class Database @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
     def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
     def email = column[String]("name")
     def password = column[String]("sha_password")
-    def * = (id.?, email, password) <> (User.tupled, User.unapply)
+    def * = (id, email, password) <> (User.tupled, User.unapply)
 
     def posts = TableQuery[BlogPosts].filter(_.userId === id)
 
@@ -22,10 +24,22 @@ class Database @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
   }
   val users = TableQuery[Users]
 
-  // find by Id
   // findByEmailAndPassword - email to lower case
+  def findUserByEmailAndPassword(email: String, password: String): Future[Seq[User]] = db.run {
+    users.filter(_.email === email.toLowerCase).filter(_.password === password).result
+  }
+
   // findByEmail - email to lower case
-  def findUserByEmail(email: String) = db.run(users.filter(_.email === email.toLowerCase).result.head).map{_ => User.apply _}
+  def findUserByEmail(email: String): Future[Seq[User]] = db.run {
+    users.filter(_.email === email.toLowerCase).result
+  }
+
+  def create(email: String, password: String): Future[User] = db.run {
+    (users.map(u => (u.email, u.password))
+      returning users.map(_.id)
+      into((emailPass, id) => User(id, emailPass._1, emailPass._2))
+      ) += (email, password)
+  }
 
   class BlogPosts(tag: Tag) extends Table[BlogPost](tag, "blog_posts") {
     def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
@@ -39,9 +53,14 @@ class Database @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
   }
   val blogPosts = TableQuery[BlogPosts]
 
-  // find by id
   // findBlogPostsByUser
+  def findBlogPostsByUser(user: User): Future[Seq[BlogPost]] = db.run {
+    blogPosts.filter(_.userId === user.id).result
+  }
   // findBlogPostById
+  def findBlogPostById(id: Long): Future[Seq[BlogPost]] = db.run {
+    blogPosts.filter(_.id === id).result
+  }
 
   class PostComments(tag: Tag) extends Table[PostComment](tag, "post_comments") {
     def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
@@ -55,7 +74,12 @@ class Database @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
   }
   val postComments = TableQuery[PostComments]
 
-  // find by id
   // findAllCommentsByPost
+  def findAllCommentsByPost(post: BlogPost): Future[Seq[PostComment]] = db.run {
+    postComments.filter(_.blogPostId === post.id).result
+  }
   // findAllCommentsByUser
+  def findAllCommentsByUser(user: User): Future[Seq[PostComment]] = db.run {
+    postComments.filter(_.userId === user.id).result
+  }
 }
