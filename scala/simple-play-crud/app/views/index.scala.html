@@ -1,0 +1,20 @@
+@(person: Form[CreatePersonForm])(implicit messages: Messages)
+
+@import helper._
+
+@main("Welcome to Play") {
+	<script type='text/javascript' src='@routes.Assets.versioned("javascripts/index.js")'></script>
+
+	<p><a href="@routes.PersonController.filter">Filter users</a></p>
+
+	@form(routes.PersonController.addPerson()) {
+		@inputText(person("name"))
+		@inputText(person("age"))
+
+		<div class="buttons">
+			<input type="submit" value="Add Person"/>
+		</div>
+	}
+
+	<ul id="persons"></ul>
+}
