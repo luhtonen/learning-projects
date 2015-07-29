@@ -11,5 +11,8 @@ GET     /filter                     controllers.PersonController.filter
 POST    /filter                     controllers.PersonController.setFilterAge
 GET     /filter/:age                controllers.PersonController.getPersonsByAge(age: Int)
 
+GET     /personfilter               controllers.PersonController.personFilter
+POST    /personfilter               controllers.PersonController.filterById
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

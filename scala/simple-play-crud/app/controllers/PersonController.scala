@@ -95,6 +95,29 @@ class PersonController @Inject() (repo: PersonRepository, val messagesApi: Messa
       Ok(Json.toJson(people))
     }
   }
+
+  val personFilterForm: Form[PersonFilterForm] = Form {
+    mapping(
+      "id" -> longNumber()
+    )(PersonFilterForm.apply)(PersonFilterForm.unapply)
+  }
+
+  def personFilter = Action {
+    Ok(views.html.personfilter(personFilterForm))
+  }
+
+  def filterById = Action.async { implicit request =>
+    personFilterForm.bindFromRequest().fold(
+      errorForm => {
+        Future.successful(Ok(views.html.personfilter(errorForm)))
+      },
+      person => {
+        repo.findById(person.id).map { person =>
+          Ok(Json.toJson(person))
+        }
+      }
+    )
+  }
 }
 
 /**
@@ -107,3 +130,5 @@ class PersonController @Inject() (repo: PersonRepository, val messagesApi: Messa
 case class CreatePersonForm(name: String, age: Int)
 
 case class AgeFilterForm(age: Int)
+
+case class PersonFilterForm(id: Long)

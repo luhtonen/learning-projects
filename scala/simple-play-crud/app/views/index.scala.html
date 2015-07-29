@@ -5,7 +5,8 @@
 @main("Welcome to Play") {
 	<script type='text/javascript' src='@routes.Assets.versioned("javascripts/index.js")'></script>
 
-	<p><a href="@routes.PersonController.filter">Filter users</a></p>
+	<p><a href="@routes.PersonController.filter">Filter by age</a></p>
+	<p><a href="@routes.PersonController.personFilter">Filter by id</a></p>
 
 	@form(routes.PersonController.addPerson()) {
 		@inputText(person("name"))

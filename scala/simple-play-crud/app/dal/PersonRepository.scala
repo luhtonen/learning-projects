@@ -84,4 +84,8 @@ class PersonRepository @Inject() (dbConfigProvider: DatabaseConfigProvider)(impl
   def findByAge(age: Int): Future[Seq[Person]] = db.run {
     people.filter(_.age === age).result
   }
+
+  def findById(id: Long): Future[Person] = db.run {
+    people.filter(_.id === id).result.head
+  }
 }
