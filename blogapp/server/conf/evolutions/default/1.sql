@@ -1,7 +1,7 @@
 
 # --- !Ups
 
-create table blog_post (
+create table blog_posts (
   id                        bigint not null,
   subject                   varchar(255) not null,
   content                   TEXT,
@@ -10,7 +10,7 @@ create table blog_post (
   constraint pk_blog_post primary key (id))
 ;
 
-create table post_comment (
+create table post_comments (
   id                        bigint not null,
   blog_post_id              bigint,
   user_id                   bigint,
@@ -18,10 +18,10 @@ create table post_comment (
   constraint pk_post_comment primary key (id))
 ;
 
-create table user (
+create table users (
   id                        bigint not null,
   email                     varchar(255) not null,
-  sha_password              varbinary(64) not null,
+  sha_password              varchar(255) not null,
   constraint uq_user_email unique (email),
   constraint pk_user primary key (id))
 ;
@@ -32,12 +32,12 @@ create sequence post_comment_seq;
 
 create sequence user_seq;
 
-alter table blog_post add constraint fk_blog_post_user_1 foreign key (user_id) references user (id) on delete restrict on update restrict;
-create index ix_blog_post_user_1 on blog_post (user_id);
-alter table post_comment add constraint fk_post_comment_blogPost_2 foreign key (blog_post_id) references blog_post (id) on delete restrict on update restrict;
-create index ix_post_comment_blogPost_2 on post_comment (blog_post_id);
-alter table post_comment add constraint fk_post_comment_user_3 foreign key (user_id) references user (id) on delete restrict on update restrict;
-create index ix_post_comment_user_3 on post_comment (user_id);
+alter table blog_posts add constraint fk_blog_post_user_1 foreign key (user_id) references users (id) on delete restrict on update restrict;
+create index ix_blog_post_user_1 on blog_posts (user_id);
+alter table post_comments add constraint fk_post_comment_blogPost_2 foreign key (blog_post_id) references blog_posts (id) on delete restrict on update restrict;
+create index ix_post_comment_blogPost_2 on post_comments (blog_post_id);
+alter table post_comments add constraint fk_post_comment_user_3 foreign key (user_id) references users (id) on delete restrict on update restrict;
+create index ix_post_comment_user_3 on post_comments (user_id);
 
 
 
@@ -45,11 +45,11 @@ create index ix_post_comment_user_3 on post_comment (user_id);
 
 SET REFERENTIAL_INTEGRITY FALSE;
 
-drop table if exists blog_post;
+drop table if exists blog_posts;
 
-drop table if exists post_comment;
+drop table if exists post_comments;
 
-drop table if exists user;
+drop table if exists users;
 
 SET REFERENTIAL_INTEGRITY TRUE;
 
