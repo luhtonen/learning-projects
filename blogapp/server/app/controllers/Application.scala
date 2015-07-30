@@ -6,10 +6,10 @@ import models.database.Database
 import play.api.data.Form
 import play.api.data.Forms._
 import play.api.i18n.{I18nSupport, MessagesApi}
-import play.api.mvc._
 import play.api.libs.json.Json
+import play.api.mvc._
 
-import scala.concurrent.{Future, ExecutionContext}
+import scala.concurrent.{ExecutionContext, Future}
 
 class Application @Inject()(val database: Database, val messagesApi: MessagesApi)
                            (implicit ec: ExecutionContext) extends Controller with I18nSupport {
@@ -31,8 +31,11 @@ class Application @Inject()(val database: Database, val messagesApi: MessagesApi
         Future.successful(Ok(errorForm.errorsAsJson))
       },
       user => {
+        database.findUserByEmail(user.email).map { users =>
+          if (users.nonEmpty) { Ok(Json.toJson(Map("error" -> s"User with email $user.email already exists."))) }
+        }
         database.create(user.email, user.password).map {_ =>
-          Ok(Json.toJson(Map("success" -> "User created successfully")))
+          Ok(Json.toJson(Map("success" -> "User created successfully.")))
         }
       }
     )
