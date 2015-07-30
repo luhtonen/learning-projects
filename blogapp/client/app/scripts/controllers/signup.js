@@ -8,7 +8,7 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('SignupCtrl', function ($scope, $http, $log) {
+  .controller('SignupCtrl', ["$scope", "$http", "$log", function ($scope, $http, $log) {
     $scope.signup = function() {
       var payload = {
         email : $scope.email,
@@ -19,4 +19,4 @@ angular.module('clientApp')
         $log.debug(data);
       });
     };
-  });
+  }]);
