@@ -28,7 +28,7 @@ class Application @Inject()(val database: Database, val messagesApi: MessagesApi
   def signup = Action.async { implicit request =>
     signUpForm.bindFromRequest.fold(
       errorForm => {
-        Future.successful(Ok(errorForm.errorsAsJson))
+        Future.successful(BadRequest(errorForm.errorsAsJson))
       },
       user => {
         database.findUserByEmail(user.email).map { users =>

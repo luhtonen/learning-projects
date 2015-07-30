@@ -8,7 +8,7 @@
  * Service in the clientApp.
  */
 angular.module('clientApp')
-  .factory('alertServices', ["$timeout", function ($timeout) {
+  .factory('alertService', ["$timeout", function ($timeout) {
     var ALERT_TIMEOUT = 5000;
 
     function add(type, msg, timeout) {
@@ -22,7 +22,7 @@ angular.module('clientApp')
         }, ALERT_TIMEOUT);
       }
 
-      return alert.push({
+      return alerts.push({
         type: type,
         msg: msg,
         close: function () {

@@ -8,8 +8,8 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('SignupCtrl', ["$scope", "$http", "$log", "alertService", "$location", "userService",
-    function ($scope, $http, $log, alertService, $location, userService) {
+  .controller('SignupCtrl', ["$scope", "$http", "$log", "alertService", "$location",
+    function ($scope, $http, $log, alertService, $location) {
 
     $scope.signup = function() {
       var payload = {
