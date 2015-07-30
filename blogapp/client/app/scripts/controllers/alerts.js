@@ -8,5 +8,6 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('AlertsCtrl', function () {
-  });
+  .controller('AlertsCtrl', ["$scope", "alertService", function ($scope, alertService) {
+    $scope.alerts = alertService.get();
+  }]);
