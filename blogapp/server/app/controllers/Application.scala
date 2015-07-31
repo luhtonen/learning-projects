@@ -11,7 +11,7 @@ import play.api.mvc._
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class Application @Inject()(val database: Database, val messagesApi: MessagesApi)
+class Application @Inject()(database: Database, val messagesApi: MessagesApi)
                            (implicit ec: ExecutionContext) extends Controller with I18nSupport {
 
   def index = Action {

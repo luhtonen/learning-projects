@@ -16,7 +16,7 @@ class Database @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
   import dbConfig._
   import driver.api._
 
-  class Users(tag: Tag) extends Table[User](tag, "app_users") {
+  private class Users(tag: Tag) extends Table[User](tag, "app_users") {
     def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
     def email = column[String]("name")
     def password = column[String]("sha_password")
@@ -26,7 +26,7 @@ class Database @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
 
     def userEmailIndex = index("uq_user_email", email, unique = true)
   }
-  val users = TableQuery[Users]
+  private val users = TableQuery[Users]
 
   // findByEmailAndPassword - email to lower case
   def findUserByEmailAndPassword(email: String, password: String): Future[Seq[User]] = db.run {
@@ -45,7 +45,7 @@ class Database @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
       ) += (email, password)
   }
 
-  class BlogPosts(tag: Tag) extends Table[BlogPost](tag, "blog_posts") {
+  private class BlogPosts(tag: Tag) extends Table[BlogPost](tag, "blog_posts") {
     def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
     def subject = column[String]("subject")
     def content = column[String]("content")
@@ -55,7 +55,7 @@ class Database @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
 
     def user = foreignKey("fk_blog_post_user_1", userId, TableQuery[Users])(_.id)
   }
-  val blogPosts = TableQuery[BlogPosts]
+  private val blogPosts = TableQuery[BlogPosts]
 
   // findBlogPostsByUser
   def findBlogPostsByUser(user: User): Future[Seq[BlogPost]] = db.run {
@@ -66,7 +66,7 @@ class Database @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
     blogPosts.filter(_.id === id).result
   }
 
-  class PostComments(tag: Tag) extends Table[PostComment](tag, "post_comments") {
+  private class PostComments(tag: Tag) extends Table[PostComment](tag, "post_comments") {
     def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
     def blogPostId = column[Long]("blog_post_id")
     def userId = column[Long]("user_id")
@@ -76,7 +76,7 @@ class Database @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
     def blogPost = foreignKey("fk_post_comment_blogPost_2", blogPostId, TableQuery[BlogPosts])(_.id)
     def user = foreignKey("fk_post_comment_user_3", userId, TableQuery[Users])(_.id)
   }
-  val postComments = TableQuery[PostComments]
+  private val postComments = TableQuery[PostComments]
 
   // findAllCommentsByPost
   def findAllCommentsByPost(post: BlogPost): Future[Seq[PostComment]] = db.run {
