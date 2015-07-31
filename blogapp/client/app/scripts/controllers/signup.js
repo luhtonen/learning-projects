@@ -8,8 +8,8 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('SignupCtrl', ["$scope", "$http", "$log", "alertService", "$location",
-    function ($scope, $http, $log, alertService, $location) {
+  .controller('SignupCtrl', ["$scope", "$http", "$log", "alertService", "$location", "userService",
+    function ($scope, $http, $log, alertService, $location, userService) {
 
     $scope.signup = function() {
       var payload = {
@@ -29,6 +29,11 @@ angular.module('clientApp')
         }
         if (status === 500) {
           alertService.add('danger', 'Internal server error!');
+        }
+      }).success(function (data) {
+        if (data.hasOwnProperty('success')) {
+          userService.username = $scope.email;
+          $location.path('/dashboard');
         }
       });
     };

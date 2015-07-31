@@ -1,18 +1,22 @@
 package models.database
 
-import javax.inject.Inject
+import javax.inject.{Inject, Singleton}
 
 import models._
-import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
+import play.api.db.slick.DatabaseConfigProvider
 import slick.driver.JdbcProfile
 
 import scala.concurrent.Future
 
 /** Created by luhtonen on 29/07/15. */
-class Database @Inject()(protected val dbConfigProvider: DatabaseConfigProvider) extends HasDatabaseConfigProvider[JdbcProfile] {
+@Singleton
+class Database @Inject()(protected val dbConfigProvider: DatabaseConfigProvider) {
+  private val dbConfig = dbConfigProvider.get[JdbcProfile]
+
+  import dbConfig._
   import driver.api._
 
-  class Users(tag: Tag) extends Table[User](tag, "users") {
+  class Users(tag: Tag) extends Table[User](tag, "app_users") {
     def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
     def email = column[String]("name")
     def password = column[String]("sha_password")
