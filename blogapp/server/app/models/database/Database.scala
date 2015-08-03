@@ -20,7 +20,7 @@ class Database @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
     def id = column[Long]("ID", O.PrimaryKey, O.AutoInc)
     def email = column[String]("EMAIL")
     def password = column[String]("SHA_PASSWORD")
-    def * = (id, email, password) <> (User.tupled, User.unapply)
+    def * = (id.?, email, password) <> (User.tupled, User.unapply)
 
     def posts = TableQuery[BlogPosts].filter(_.userId === id)
 
@@ -41,8 +41,12 @@ class Database @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
   def create(email: String, password: String): Future[User] = db.run {
     (users.map(u => (u.email, u.password))
       returning users.map(_.id)
-      into((emailPass, id) => User(id, emailPass._1, emailPass._2))
+      into((emailPass, id) => User(Some(id), emailPass._1, emailPass._2))
       ) += (email, password)
+  }
+
+  def insert(user: User) = {
+    db.run(users += user)
   }
 
   private class BlogPosts(tag: Tag) extends Table[BlogPost](tag, "BLOG_POSTS") {

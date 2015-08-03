@@ -2,6 +2,7 @@ package controllers
 
 import javax.inject.Inject
 
+import models.User
 import models.database.Database
 import play.api.data.Form
 import play.api.data.Forms._
@@ -18,11 +19,11 @@ class Application @Inject()(database: Database, val messagesApi: MessagesApi)
     Ok("Your new application is ready.")
   }
 
-  val signUpForm: Form[SignUpForm] = Form {
+  val signUpForm = Form {
     mapping(
       "email" -> email,
       "password" -> nonEmptyText
-    )(SignUpForm.apply)(SignUpForm.unapply)
+    )((email, password) => User(None, email, password))((user: User) => Some(user.email, user.password))
   }
 
   def signup = Action.async { implicit request =>
@@ -34,7 +35,7 @@ class Application @Inject()(database: Database, val messagesApi: MessagesApi)
         database.findUserByEmail(user.email).map { users =>
           if (users.nonEmpty) { Ok(Json.toJson(Map("error" -> s"User with email $user.email already exists."))) }
         }
-        database.create(user.email, user.password).map {_ =>
+        database.insert(user).map {_ =>
           Ok(Json.toJson(Map("success" -> "User created successfully.")))
         }
       }
