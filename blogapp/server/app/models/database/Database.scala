@@ -16,7 +16,7 @@ class Database @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
   import dbConfig._
   import driver.api._
 
-  private class Users(tag: Tag) extends Table[User](tag, "APP_USERS") {
+  private class Users(tag: Tag) extends Table[User](tag, "users") {
     def id = column[Long]("ID", O.PrimaryKey, O.AutoInc)
     def email = column[String]("EMAIL")
     def password = column[String]("SHA_PASSWORD")
