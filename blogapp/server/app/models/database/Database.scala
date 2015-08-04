@@ -17,14 +17,14 @@ class Database @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
   import driver.api._
 
   private class Users(tag: Tag) extends Table[User](tag, "users") {
-    def id = column[Long]("ID", O.PrimaryKey, O.AutoInc)
-    def email = column[String]("EMAIL")
-    def password = column[String]("SHA_PASSWORD")
+    def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
+    def email = column[String]("email")
+    def password = column[String]("sha_password")
     def * = (id.?, email, password) <> (User.tupled, User.unapply)
 
     def posts = TableQuery[BlogPosts].filter(_.userId === id)
 
-    def userEmailIndex = index("UQ_USER_EMAIL", email, unique = true)
+    def userEmailIndex = index("uq_user_email", email, unique = true)
   }
   private val users = TableQuery[Users]
 
@@ -47,15 +47,15 @@ class Database @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
 
   def insert(user: User) = db.run(users += user)
 
-  private class BlogPosts(tag: Tag) extends Table[BlogPost](tag, "BLOG_POSTS") {
-    def id = column[Long]("ID", O.PrimaryKey, O.AutoInc)
-    def subject = column[String]("SUBJECT")
-    def content = column[String]("CONTENT")
-    def userId = column[Long]("USER_ID")
-    def commentCount = column[Long]("COMMENT_COUNT")
+  private class BlogPosts(tag: Tag) extends Table[BlogPost](tag, "blog_posts") {
+    def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
+    def subject = column[String]("subject")
+    def content = column[String]("content")
+    def userId = column[Long]("user_id")
+    def commentCount = column[Long]("comment_count")
     def * = (id.?, subject, content, userId, commentCount) <> (BlogPost.tupled, BlogPost.unapply)
 
-    def user = foreignKey("FK_BLOG_POST_USER_1", userId, TableQuery[Users])(_.id)
+    def user = foreignKey("fk_blog_post_user_1", userId, TableQuery[Users])(_.id)
   }
   private val blogPosts = TableQuery[BlogPosts]
 
@@ -68,15 +68,15 @@ class Database @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
     blogPosts.filter(_.id === id).result
   }
 
-  private class PostComments(tag: Tag) extends Table[PostComment](tag, "POST_COMMENTS") {
-    def id = column[Long]("ID", O.PrimaryKey, O.AutoInc)
-    def blogPostId = column[Long]("BLOG_POST_ID")
-    def userId = column[Long]("USER_ID")
-    def content = column[String]("CONTENT")
+  private class PostComments(tag: Tag) extends Table[PostComment](tag, "post_comments") {
+    def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
+    def blogPostId = column[Long]("blog_post_id")
+    def userId = column[Long]("user_id")
+    def content = column[String]("content")
     def * = (id.?, blogPostId, userId, content) <> (PostComment.tupled, PostComment.unapply)
 
     def blogPost = foreignKey("fk_post_comment_blogpost_2", blogPostId, TableQuery[BlogPosts])(_.id)
-    def user = foreignKey("FK_POST_COMMENT_USER_3", userId, TableQuery[Users])(_.id)
+    def user = foreignKey("fk_post_comment_user_3", userId, TableQuery[Users])(_.id)
   }
   private val postComments = TableQuery[PostComments]
 
