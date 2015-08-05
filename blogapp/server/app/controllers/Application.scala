@@ -26,6 +26,13 @@ class Application @Inject()(database: Database, val messagesApi: MessagesApi)
     )((email, password) => User(None, email, password))((user: User) => Some(user.email, user.password))
   }
 
+  val loginForm = Form {
+    mapping(
+      "email" -> email,
+      "password" -> nonEmptyText
+    )(LoginForm.apply)(LoginForm.unapply)
+  }
+
   def signup = Action.async { implicit request =>
     signUpForm.bindFromRequest.fold(
       errorForm => {
@@ -42,8 +49,29 @@ class Application @Inject()(database: Database, val messagesApi: MessagesApi)
     )
   }
 
+  def login = Action.async { implicit request =>
+    loginForm.bindFromRequest.fold(
+      errorForm => {
+        Future.successful(BadRequest(errorForm.errorsAsJson))
+      },
+      user => {
+        database.findUserByEmailAndPassword(user.email, user.password).map { users =>
+          if (users.isEmpty) {
+            Ok(Json.toJson(Map("error" -> "Incorrect email or password")))
+          } else {
+            OK(Json.toJson(Map("success" -> Seq {
+              "message" -> "Logged in successfully",
+              "user" -> user.email
+            })))
+          }
+        }
+      }
+    )
+  }
+
   trait UserForm {
     def email: String
   }
   case class SignUpForm(email: String, password: String) extends UserForm
+  case class LoginForm(email: String, password: String) extends UserForm
 }

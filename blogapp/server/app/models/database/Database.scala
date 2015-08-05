@@ -38,13 +38,6 @@ class Database @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
     users.filter(_.email === email.toLowerCase).result
   }
 
-/*  def create(email: String, password: String): Future[User] = db.run {
-    (users.map(u => (u.email, u.password))
-      returning users.map(_.id)
-      into((emailPass, id) => User(id, emailPass._1, emailPass._2))
-      ) += (email, password)
-  }*/
-
   def insert(user: User) = db.run(users += user)
 
   private class BlogPosts(tag: Tag) extends Table[BlogPost](tag, "blog_posts") {
