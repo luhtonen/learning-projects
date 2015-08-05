@@ -59,14 +59,31 @@ class Application @Inject()(database: Database, val messagesApi: MessagesApi)
           if (users.isEmpty) {
             Ok(Json.toJson(Map("error" -> "Incorrect email or password")))
           } else {
-            OK(Json.toJson(Map("success" -> Seq {
-              "message" -> "Logged in successfully",
-              "user" -> user.email
-            })))
+            val msg = Json.obj(
+              "success" -> Json.obj("message" -> "Logged in successfully", "user" -> user.email)
+            )
+            Ok(msg).withSession("username" -> user.email)
           }
         }
       }
     )
+  }
+
+  def logout = Action.async { implicit request =>
+    Future.successful(Ok(Json.toJson("success" -> "Logged out successfully."))
+      .withSession(request.session - "username"))
+  }
+
+  def isAuthenticated = Action.async{ implicit request =>
+    if(request.session.get("username") == null) {
+      Future.successful(Unauthorized)
+    } else {
+      val msg = Json.obj("success" -> Json.obj(
+        "message" -> "User is logged in already",
+        "user" -> request.session.get("username")
+      ))
+      Future.successful(Ok(msg))
+    }
   }
 
   trait UserForm {
