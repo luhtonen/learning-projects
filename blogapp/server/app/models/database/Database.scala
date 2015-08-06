@@ -38,6 +38,10 @@ class Database @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
     users.filter(_.email === email.toLowerCase).result
   }
 
+  def findOneByUsername(username: String) = db.run {
+    users.filter(_.email === username.toLowerCase).result.head
+  }
+
   def insert(user: User) = db.run(users += user)
 
   private class BlogPosts(tag: Tag) extends Table[BlogPost](tag, "blog_posts") {
