@@ -40,7 +40,10 @@ class Application @Inject()(database: Database, val messagesApi: MessagesApi)
       },
       user => {
         database.findUserByEmail(user.email).map { users =>
-          if (users.nonEmpty) { Ok(Json.toJson(Map("error" -> s"User with email $user.email already exists."))) }
+          println("### found users " + users)
+          if (users.nonEmpty) {
+            Ok(Json.toJson(Map("error" -> s"User with email $user.email already exists.")))
+          }
         }
         database.insert(user).map {_ =>
           Ok(Json.toJson(Map("success" -> "User created successfully.")))
@@ -70,7 +73,7 @@ class Application @Inject()(database: Database, val messagesApi: MessagesApi)
   }
 
   def logout = Action.async { implicit request =>
-    Future.successful(Ok(Json.toJson("success" -> "Logged out successfully."))
+    Future.successful(Ok(Json.toJson(Map("success" -> "Logged out successfully.")))
       .withSession(request.session - "username"))
   }
 
