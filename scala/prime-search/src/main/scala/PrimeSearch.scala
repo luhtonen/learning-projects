@@ -78,6 +78,15 @@ object MathExperiments {
     fibHelper(x)
   }
 
+  def factorial(n: Long): BigInt = {
+    @tailrec
+    def factorialAccum(acc: BigInt, n: Long): BigInt = {
+      if (n == 0) acc
+      else factorialAccum(n * acc, n - 1)
+    }
+    factorialAccum(1, n)
+  }
+
   def main() = {
     println("sum of numbers between 1 and 100    = " + sum(List.range(1, 100)))
     println("sum of numbers between 1 and 15     = " + sum(List.range(1, 15)))
@@ -97,5 +106,8 @@ object MathExperiments {
     println("fibonacci number for base 9   = " + fibonacci(9))
     println("fibonacci number for base 19  = " + fibonacci(19))
     println("fibonacci number for base 90 = " + fibonacci(90))
+
+    println("factorial for base 5 = " + factorial(5))
+    println("factorial for base 15 = " + factorial(15))
   }
 }
