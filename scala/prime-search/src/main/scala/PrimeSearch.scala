@@ -68,6 +68,16 @@ object MathExperiments {
     maxAccum2(ints, 0)
   }
 
+  def fibonacci(x: Int): BigInt = {
+    @tailrec
+    def fibHelper(x: Int, prev: BigInt = 0, next: BigInt = 1): BigInt = x match {
+      case 0 => prev
+      case 1 => next
+      case _ => fibHelper(x - 1, next, next + prev)
+    }
+    fibHelper(x)
+  }
+
   def main() = {
     println("sum of numbers between 1 and 100    = " + sum(List.range(1, 100)))
     println("sum of numbers between 1 and 15     = " + sum(List.range(1, 15)))
@@ -83,5 +93,9 @@ object MathExperiments {
     val maxList = List.range(1, 100000)
     println("max of numbers between 1 and 1000000  = " + max(maxList))
     println("max2 of numbers between 1 and 1000000 = " + max2(maxList))
+
+    println("fibonacci number for base 9   = " + fibonacci(9))
+    println("fibonacci number for base 19  = " + fibonacci(19))
+    println("fibonacci number for base 90 = " + fibonacci(90))
   }
 }
