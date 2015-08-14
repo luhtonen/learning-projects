@@ -87,6 +87,18 @@ object MathExperiments {
     factorialAccum(1, n)
   }
 
+  def experiments(limit: Int): Unit = {
+    println(s"searching for prime numbers until $limit")
+    val list = List.range(2, limit)
+    list.foreach(n => {
+      var primeFound = true
+      for (i <- 2 until n) {
+        if (n % i == 0) primeFound = false
+      }
+      if (primeFound) println(n)
+    })
+  }
+
   def main() = {
     println("sum of numbers between 1 and 100    = " + sum(List.range(1, 100)))
     println("sum of numbers between 1 and 15     = " + sum(List.range(1, 15)))
@@ -109,5 +121,16 @@ object MathExperiments {
 
     println("factorial for base 5 = " + factorial(5))
     println("factorial for base 15 = " + factorial(15))
+
+    println("2 / 2 = " + (2 / 2))
+    println("3 / 2 = " + (3 / 2))
+    println("2 % 2 = " + (2 % 2))
+    println("3 % 2 = " + (3 % 2))
+    println("4 % 2 = " + (4 % 2))
+    println("5 % 2 = " + (5 % 2))
+
+    experiments(10)
+    experiments(20)
+    experiments(100)
   }
 }
