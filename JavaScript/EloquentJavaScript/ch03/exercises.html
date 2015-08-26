@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Exercises for Chapter 02</title>
+  <meta name="viewport" content="width=device-width">
+  <script src="exercises.js"></script>
+</head>
+<body>
+  <p>
+    <a href="#" onclick="console.log(sum(range(1, 10)))">sum(range(1, 10))</a><br/>
+    <a href="#" onclick="console.log(range(1, 10, 2))">range(1, 10, 2)</a><br/>
+    <a href="#" onclick="console.log(range(5, 2, -1))">range(5, 2, -1)</a><br/>
+  </p>
+  <p>
+    <a href="#" onclick="console.log(reverseArray([2, 3, 4, 5]))">reverseArray([2, 3, 4, 5])</a><br/>
+    <a href="#" onclick="console.log(reverseArrayInPlace([2, 3, 4, 5]))">reverseArrayInPlace([2, 3, 4, 5])</a><br/>
+    <a href="#" onclick="console.log(reverseArrayInPlace([1, 2, 3, 4, 5]))">reverseArrayInPlace([1, 2, 3, 4, 5])</a><br/>
+  </p>
+  <p>
+    <a href="#" onclick="console.log(arrayToList([1, 2, 3]))">arrayToList([1, 2, 3])</a><br/>
+    <a href="#" onclick="console.log(listToArray(arrayToList([10, 20, 30])))">listToArray</a><br/>
+    <a href="#" onclick="console.log(prepend(10, prepend(20, null)))">prepend</a><br/>
+    <a href="#" onclick="console.log(nth(arrayToList([10, 20, 30]), 1))">nth</a><br/>
+  </p>
+  <p>
+    <script>var obj = {here: {is: "an"}, object: 2};</script>
+    <a href="#" onclick="console.log(deepEqual(obj, obj))">deepEqual(obj, obj)</a><br/>
+    <a href="#" onclick="console.log(deepEqual(obj, null))">deepEqual(obj, null)</a><br/>
+    <a href="#" onclick="console.log(deepEqual(obj, {here: 1, object: 2}))">deepEqual(obj, {here: 1, object: 2})</a><br/>
+    <a href="#" onclick="console.log(deepEqual(obj, {here: {is: 'an'}, object: 2}))">deepEqual(obj, {here: {is: "an"}, object: 2})</a><br/>
+  </p>
+</body>
+</html>
