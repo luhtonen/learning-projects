@@ -5,13 +5,14 @@ public class Todo {
     String note
 
     public static void main(String[] args) {
-        def todos = new ArrayList()
-        todos.add(new Todo(name: "1", note: "one"))
-        todos.add(new Todo(name: "2", note: "two"))
-        todos.add(new Todo(name: "3", note: "three"))
+        def todos = [
+                new Todo(name: "1", note: "one"),
+                new Todo(name: "2", note: "two"),
+                new Todo(name: "3", note: "three")
+        ]
 
-        for (Todo todo: todos) {
-            println "${todo.name} ${todo.note}"
+        todos.each {
+            println "${it.name} ${it.note}"
         }
     }
 }
