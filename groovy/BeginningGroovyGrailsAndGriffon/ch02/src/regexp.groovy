@@ -16,3 +16,14 @@ println matcher[0]
 println matcher[0][1]
 def newPath = matcher.replaceFirst('/etc/bin')
 println newPath
+
+// Pattern operation
+def saying = """Now is the time for all good men (and women) to come to the aid
+of their country"""
+def pattern = ~/(\w+en)/
+matcher = pattern.matcher(saying)
+def count = matcher.count
+println "Matches = ${count}"
+for (i in 0..<count) {
+    println matcher[i]
+}
