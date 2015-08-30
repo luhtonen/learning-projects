@@ -8,4 +8,11 @@ assert "abc" ==~ /^a../
 assert "abc" ==~ /.*c$/
 assert "abc" ==~ '.*c\$'
 
-// 
+// Find operation
+def winpath=/C:\windows\system32\somedir/
+def matcher = winpath =~ /(\w{1}):\\(\w+)\\(\w+)\\(\w+)/
+println matcher
+println matcher[0]
+println matcher[0][1]
+def newPath = matcher.replaceFirst('/etc/bin')
+println newPath
