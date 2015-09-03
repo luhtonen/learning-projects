@@ -1,9 +1,11 @@
 /**
  * Created by luhtonen on 03/09/15.
  */
-var personViewModel = {
-  firstName: ko.observable('John'),
-  lastName: ko.observable('Smith')
-};
-ko.applyBindings(personViewModel);
-personViewModel.firstName('Ryan');
+function PersonViewModel() {
+  this.firstName = ko.observable('John');
+  this.lastName = ko.observable('Smith');
+  this.checkout = function() {
+    alert("Trying to check out");
+  };
+}
+ko.applyBindings(new PersonViewModel());
