@@ -1,0 +1,13 @@
+{
+  "generator-knockout-bootstrap": {
+    "appPath": "app",
+    "includeJade": false,
+    "includeSammy": false,
+    "includeFontAwesome": true,
+    "includeSocketIO": false,
+    "includeValidation": false,
+    "includeBootbox": false,
+    "includeNotify": false,
+    "includeConnectionWidget": false
+  }
+}
