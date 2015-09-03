@@ -6,3 +6,4 @@ var personViewModel = {
   lastName: "Smith"
 };
 ko.applyBindings(personViewModel);
+personViewModel.firstName = 'Ryan';
