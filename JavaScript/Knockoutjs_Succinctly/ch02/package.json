@@ -1,0 +1,11 @@
+{
+  "name": "hello-knockoutjs",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "postinstall": "bower install"
+  },
+  "author": "Eduard Luhtonen <luhtonen@gmail.com> (http://luhtonen.github.io/)",
+  "license": "MIT"
+}

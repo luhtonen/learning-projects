@@ -1,0 +1,19 @@
+{
+  "name": "hello-knockoutjs",
+  "version": "0.0.1",
+  "homepage": "https://github.com/luhtonen/learning-projects",
+  "authors": [
+    "Eduard Luhtonen <luhtonen@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "knockout": "~3.3.0"
+  }
+}
