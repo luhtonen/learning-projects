@@ -4,6 +4,7 @@
 define(['jquery',
     'knockout',
     '../../assets/js/models/appViewModel.js',
+    '../../samples/js/ch03.js',
     'jquery.bootstrap'
     ], function ($, ko, AppViewModel) {
 

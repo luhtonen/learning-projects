@@ -199,7 +199,7 @@ module.exports = function (grunt) {
         files: '<%= yeoman.app %>/assets/css/*.css'
       },
       html: {
-        files: '<%= yeoman.app %>/*.html'
+        files: ['<%= yeoman.app %>/*.html', '<%= yeoman.app %>/samples/*.html']
       },
       compass: {
         files: '<%= yeoman.app %>/assets/scss/*.scss',
