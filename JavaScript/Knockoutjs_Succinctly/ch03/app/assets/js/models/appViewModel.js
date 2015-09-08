@@ -34,7 +34,7 @@ define(['jquery',
     };
 
     self.removeProduct = function (product) {
-      self.shoppingCart.remove(product);
+      self.shoppingCart.destroy(product);
     };
   };
 });
