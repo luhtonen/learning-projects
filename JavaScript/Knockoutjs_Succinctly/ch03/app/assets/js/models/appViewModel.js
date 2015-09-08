@@ -18,5 +18,15 @@ define(['jquery',
     self.fullName = ko.computed(function () {
       return self.firstName() + ' ' + self.lastName();
     }, self);
+
+    function Product(name, price) {
+      this.name = ko.observable(name);
+      this.price = ko.observable(price);
+    }
+    self.shoppingCart = ko.observableArray([
+      new Product('Beer', 10.99),
+      new Product('Brats', 7.99),
+      new Product('Buns', 1.49)
+    ]);
   };
 });
