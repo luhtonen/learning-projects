@@ -11,4 +11,8 @@ define(['jquery',
 
   ko.applyBindings(UI);
 
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+
 });

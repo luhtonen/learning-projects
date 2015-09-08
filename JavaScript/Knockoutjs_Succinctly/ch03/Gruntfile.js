@@ -54,7 +54,7 @@ module.exports = function (grunt) {
         overwrite: true,
         replacements: [{
           from: /\$icon\-font\-path:.*/g,
-          to: '$icon-font-path: \'../../bower_components/bootstrap-sass-official/assets/fonts/bootstrap\';'
+          to: '$icon-font-path: \'../../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/\';'
         }]
       }
     },
