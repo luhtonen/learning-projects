@@ -6,7 +6,6 @@ Make sure you have the latest packages installed
 
 ```
 npm install
-bower install
 ```
 
 Note: If you don't have `npm` installed, make sure you have
@@ -38,17 +37,6 @@ javascript file.
 Running `grunt` by itself will run through all of the steps of
 linting the javascript, building out dependencies and ultimately
 creating all the files in the folder `/dist/`.
-
-## Working with the scaffolded app
-
-There's just enough to in place to get you going. Go ahead
-and make your changes to `index.html`. You'll start your
-javascript work in `app/assets/js/main.js` by requiring your first
-modules. Past that, well, the world is your oyster.
-
-### Tests
-
-TODO
 
 ## Deploying your application on a server
 
