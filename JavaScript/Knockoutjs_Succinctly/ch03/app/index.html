@@ -42,6 +42,8 @@
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal"
                     data-bind="click: checkout">Checkout</button>
+            <!-- Button to add product -->
+            <button class="btn btn-info" data-bind="click: addProduct">Add Beer</button>
 
             <!-- Table of products -->
             <table class="table">
@@ -55,6 +57,7 @@
                 <tr>
                   <td data-bind="text: name"></td>
                   <td data-bind="text: price"></td>
+                  <td><button class="btn btn-danger" data-bind="click: $root.removeProduct"><span class="glyphicon glyphicon-trash"></span> Remove</button></td>
                 </tr>
               </tbody>
             </table>

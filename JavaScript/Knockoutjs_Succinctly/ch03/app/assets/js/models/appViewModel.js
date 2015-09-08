@@ -28,5 +28,13 @@ define(['jquery',
       new Product('Brats', 7.99),
       new Product('Buns', 1.49)
     ]);
+
+    self.addProduct = function () {
+      self.shoppingCart.push(new Product('More Beer', 10.99));
+    };
+
+    self.removeProduct = function (product) {
+      self.shoppingCart.remove(product);
+    };
   };
 });
