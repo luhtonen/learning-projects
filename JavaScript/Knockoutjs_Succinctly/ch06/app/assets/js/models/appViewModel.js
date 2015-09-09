@@ -16,5 +16,12 @@ define(['jquery',
         console.log('He was holding down the Alt key for some reason.');
       }
     };
+
+    self.displayName = function () {
+      console.log(self.firstName());
+    };
+    self.setName = function () {
+      self.firstName('Bob');
+    };
   };
 });
