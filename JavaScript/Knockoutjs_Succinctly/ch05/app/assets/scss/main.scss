@@ -4,4 +4,9 @@ $icon-font-path: '../../bower_components/bootstrap-sass-official/assets/fonts/bo
 @import 'bootstrap-sass-official/assets/stylesheets/bootstrap';
 
 // Put all your custom style there
-@import 'app'
+@import 'app';
+
+.supersaver {
+  font-size: 1.2em;
+  font-weight: bold;
+}

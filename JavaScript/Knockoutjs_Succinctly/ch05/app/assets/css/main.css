@@ -8788,3 +8788,9 @@ body {
 .entry-home i {
   padding-left: 10px;
 }
+
+/* line 9, ../scss/main.scss */
+.supersaver {
+  font-size: 1.2em;
+  font-weight: bold;
+}

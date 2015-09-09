@@ -35,7 +35,7 @@ define(['jquery',
     }
     self.shoppingCart = ko.observableArray([
       new Product('Beer', 10.99, null, 0.2),
-      new Product('Brats', 7.99),
+      new Product('Brats', 7.99, null, 0.1),
       new Product('Buns', 1.49, ['Baked goods', 'Hot dogs'])
     ]);
 
