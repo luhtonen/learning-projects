@@ -9,5 +9,12 @@ define(['jquery',
 
     self.firstName = ko.observable('John');
     self.lastName = ko.observable('Smith');
+
+    self.saveUserData = function (model, event) {
+      console.log(model.firstName() + ' is trying to checkout!');
+      if (event.altKey) {
+        console.log('He was holding down the Alt key for some reason.');
+      }
+    };
   };
 });
