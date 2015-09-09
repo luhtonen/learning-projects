@@ -39,6 +39,11 @@
             <h1>Chapter 04</h1>
             <p><span data-bind="text: fullName"></span>'s shopping cart</p>
 
+            <p data-bind="with: featuredProduct">
+              Do you need <strong data-bind="text: name"></strong>? <br/>
+              Get one now for only <strong data-bind="text: price"></strong>.
+            </p>
+
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal"
                     data-bind="click: checkout">Checkout</button>

@@ -43,5 +43,7 @@ define(['jquery',
     self.removeProduct = function (product) {
       self.shoppingCart.destroy(product);
     };
+
+    self.featuredProduct = ko.observable(new Product('Acme BBQ Sauce', 3.99));
   };
 });
