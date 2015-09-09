@@ -61,7 +61,9 @@
                   <td data-bind="text: price"></td>
                   <td>
                     <ul data-bind="foreach: tags">
-                      <li data-bind="text: $data"></li>
+                      <li>
+                        <span data-bind="text: $parent.name"></span> - <span data-bind="text: $data"></span>
+                      </li>
                     </ul>
                   </td>
                   <td><button class="btn btn-danger" data-bind="click: $root.removeProduct" title="Remove product" data-toggle="tooltip"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> </button></td>
