@@ -36,7 +36,8 @@
 
             <p data-bind="with: featuredProduct">
               Do you need <span data-bind="html: $root.featuredProduct().formattedName"></span>? <br/>
-              Get one now for only <strong data-bind="text: price"></strong>.
+              Get one now for only <strong data-bind="text: price"></strong>. <br/>
+              <a data-bind="attr: {href: $root.featuredProduct().permalink}">View details</a>
             </p>
 
             <!-- Button trigger modal -->
