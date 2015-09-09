@@ -64,7 +64,7 @@
                       </li>
                     </ul>
                   </td>
-                  <td data-bind="if: discount() > 0" style="color: red;">You saved <span data-bind="text: formattedDiscount"></span>!!!</td>
+                  <td data-bind="visible: discount() > 0" style="color: red;">You saved <span data-bind="text: formattedDiscount"></span>!!!</td>
                   <td><button class="btn btn-danger" data-bind="click: $root.removeProduct" title="Remove product" data-toggle="tooltip"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> </button></td>
                 </tr>
               </tbody>
