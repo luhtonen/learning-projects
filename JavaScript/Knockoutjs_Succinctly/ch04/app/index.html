@@ -49,12 +49,14 @@
             <table class="table">
               <thead>
                 <tr>
+                  <th>#</th>
                   <th>Product</th>
                   <th>Price</th>
                 </tr>
               </thead>
               <tbody data-bind="foreach: shoppingCart">
                 <tr>
+                  <td data-bind="text: $index"></td>
                   <td data-bind="text: name"></td>
                   <td data-bind="text: price"></td>
                   <td>
