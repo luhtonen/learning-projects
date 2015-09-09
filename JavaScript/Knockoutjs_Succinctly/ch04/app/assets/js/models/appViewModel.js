@@ -19,14 +19,19 @@ define(['jquery',
       return self.firstName() + ' ' + self.lastName();
     }, self);
 
-    function Product(name, price, tags) {
+    function Product(name, price, tags, discount) {
       this.name = ko.observable(name);
       this.price = ko.observable(price);
       tags = typeof (tags) !== 'undefined' ? tags : [];
-      this.tags = tags;
+      this.tags = ko.observableArray(tags);
+      discount = typeof (discount) !== 'undefined' ? discount : 0;
+      this.discount = ko.observable(discount);
+      this.formattedDiscount = ko.computed(function () {
+        return (this.discount() * 100) + '%';
+      }, this);
     }
     self.shoppingCart = ko.observableArray([
-      new Product('Beer', 10.99),
+      new Product('Beer', 10.99, null, 0.2),
       new Product('Brats', 7.99),
       new Product('Buns', 1.49, ['Baked goods', 'Hot dogs'])
     ]);
