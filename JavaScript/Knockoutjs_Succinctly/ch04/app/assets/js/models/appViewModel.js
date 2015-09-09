@@ -19,14 +19,16 @@ define(['jquery',
       return self.firstName() + ' ' + self.lastName();
     }, self);
 
-    function Product(name, price) {
+    function Product(name, price, tags) {
       this.name = ko.observable(name);
       this.price = ko.observable(price);
+      tags = typeof (tags) !== 'undefined' ? tags : [];
+      this.tags = tags;
     }
     self.shoppingCart = ko.observableArray([
       new Product('Beer', 10.99),
       new Product('Brats', 7.99),
-      new Product('Buns', 1.49)
+      new Product('Buns', 1.49, ['Baked goods', 'Hot dogs'])
     ]);
 
     self.addProduct = function () {
