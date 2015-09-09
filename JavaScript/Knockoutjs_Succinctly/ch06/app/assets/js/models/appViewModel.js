@@ -7,10 +7,7 @@ define(['jquery',
   return function () {
     var self = this;
 
-
-    // Example observable
-    self.status = ko.observable('active');
-
-
+    self.firstName = ko.observable('John');
+    self.lastName = ko.observable('Smith');
   };
 });
