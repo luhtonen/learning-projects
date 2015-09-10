@@ -42,12 +42,13 @@
                 </div>
                 <span data-bind="visible: details" class="label label-info">Your given name</span>
               </div>
-              <div class="form-group">
+              <div class="form-group" data-bind="event: {mouseover: showDetails, mouseout: hideDetails}">
                 <label for="lastName" class="col-sm-2 control-label">Last name</label>
 
                 <div class="col-sm-8">
                   <input id="lastName" class="form-control" data-bind="value: lastName">
                 </div>
+                <span data-bind="visible: details" class="label label-info">Your surname</span>
               </div>
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
