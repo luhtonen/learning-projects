@@ -23,5 +23,12 @@ define(['jquery',
     self.setName = function () {
       self.firstName('Bob');
     };
+
+    self.showDetails = function (target, event) {
+      console.log('Mouse over');
+    };
+    self.hideDetails = function (target, event) {
+      console.log('Mouse out');
+    };
   };
 });
