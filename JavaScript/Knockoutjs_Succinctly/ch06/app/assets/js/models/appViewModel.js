@@ -38,5 +38,11 @@ define(['jquery',
     self.annoyMe = ko.observable(true);
     self.annoyTimes = ko.observableArray(['morning', 'evening']);
     self.annoyTime = ko.observable('morning');
+
+    self.annoyOptTimes = ko.observableArray([
+      'In the morning',
+      'In the afternoon',
+      'In the evening'
+    ]);
   };
 });

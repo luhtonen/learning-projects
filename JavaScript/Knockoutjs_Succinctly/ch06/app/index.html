@@ -107,6 +107,12 @@
                 </div>
               </div>
 
+              <div class="form-group" data-bind="visible: annoyMe">
+                <div class="col-sm-offset-3 col-sm-8">
+                  <select data-bind="options: annoyOptTimes"></select>
+                </div>
+              </div>
+
               <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-8">
                   <button data-bind="click: saveUserData" class="btn btn-primary">Submit</button>
