@@ -24,11 +24,12 @@ define(['jquery',
       self.firstName('Bob');
     };
 
+    self.details = ko.observable(false);
     self.showDetails = function (target, event) {
-      console.log('Mouse over');
+      self.details(true);
     };
     self.hideDetails = function (target, event) {
-      console.log('Mouse out');
+      self.details(false);
     };
   };
 });

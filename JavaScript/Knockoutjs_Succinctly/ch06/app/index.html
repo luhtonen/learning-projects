@@ -30,22 +30,36 @@
     <div class="container">
       <div id="home">
         <div class="row">
-          <div class="col-md-6 col-md-offset-3">
+          <div class="col-md-8 col-md-offset-3">
             <h1>Chapter 06</h1>
-            <form action="#" method="post">
+
+            <form action="#" method="post" class="form-horizontal">
               <div class="form-group" data-bind="event: {mouseover: showDetails, mouseout: hideDetails}">
-                <label for="firstName">First name</label>
-                <input id="firstName" class="form-control" data-bind="value: firstName">
+                <label for="firstName" class="col-sm-2 control-label">First name</label>
+
+                <div class="col-sm-8">
+                  <input id="firstName" class="form-control" data-bind="value: firstName">
+                </div>
+                <span data-bind="visible: details" class="label label-info">Your given name</span>
               </div>
               <div class="form-group">
-                <label for="lastName">Last name</label>
-                <input id="lastName" class="form-control" data-bind="value: lastName">
+                <label for="lastName" class="col-sm-2 control-label">Last name</label>
+
+                <div class="col-sm-8">
+                  <input id="lastName" class="form-control" data-bind="value: lastName">
+                </div>
               </div>
-              <p><button data-bind="click: saveUserData" class="btn btn-primary">Submit</button></p>
-              <p>
-                <button data-bind="click: displayName" class="btn btn-warning">Display Name</button>
-                <button data-bind="click: setName" class="btn btn-warning">Set Name</button>
-              </p>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button data-bind="click: saveUserData" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button data-bind="click: displayName" class="btn btn-warning">Display Name</button>
+                  <button data-bind="click: setName" class="btn btn-warning">Set Name</button>
+                </div>
+              </div>
             </form>
           </div>
         </div>
