@@ -35,28 +35,49 @@
 
             <form action="#" method="post" class="form-horizontal">
               <div class="form-group" data-bind="event: {mouseover: function (data, event) { showDetails(data, event, 'firstName') }, mouseout: hideDetails}">
-                <label for="firstName" class="col-sm-2 control-label">First name</label>
+                <label for="firstName" class="col-sm-3 control-label">First name</label>
 
-                <div class="col-sm-8">
+                <div class="col-sm-6">
                   <input id="firstName" class="form-control" data-bind="value: firstName">
                 </div>
                 <span data-bind="visible: details() === 'firstName'" class="label label-info">Your given name</span>
               </div>
-              <div class="form-group" data-bind="event: {mouseover: function (data, event) { showDetails(data, event, 'lastName') }, mouseout: hideDetails}">
-                <label for="lastName" class="col-sm-2 control-label">Last name</label>
 
-                <div class="col-sm-8">
+              <div class="form-group" data-bind="event: {mouseover: function (data, event) { showDetails(data, event, 'lastName') }, mouseout: hideDetails}">
+                <label for="lastName" class="col-sm-3 control-label">Last name</label>
+
+                <div class="col-sm-6">
                   <input id="lastName" class="form-control" data-bind="value: lastName">
                 </div>
                 <span data-bind="visible: details() === 'lastName'" class="label label-info">Your surname</span>
               </div>
+
+              <div class="form-group" data-bind="event: {mouseover: function (data, event) { showDetails(data, event, 'primaryPhone') }, mouseout: hideDetails}">
+                <label for="primaryPhone" class="col-sm-3 control-label">Primary phone</label>
+
+                <div class="col-sm-6">
+                  <input id="primaryPhone" class="form-control" data-bind="value: primaryPhone">
+                </div>
+                <span data-bind="visible: details() === 'primaryPhone'" class="label label-info">Primary phone number</span>
+              </div>
+
+              <div class="form-group" data-bind="event: {mouseover: function (data, event) { showDetails(data, event, 'secondaryPhone') }, mouseout: hideDetails}">
+                <label for="secondaryPhone" class="col-sm-3 control-label">Secondary phone</label>
+
+                <div class="col-sm-6">
+                  <input id="secondaryPhone" class="form-control" data-bind="value: secondaryPhone, enable: primaryPhone">
+                </div>
+                <span data-bind="visible: details() === 'secondaryPhone'" class="label label-info">Secondary phone number</span>
+              </div>
+
               <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
+                <div class="col-sm-offset-3 col-sm-8">
                   <button data-bind="click: saveUserData" class="btn btn-primary">Submit</button>
                 </div>
               </div>
+
               <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
+                <div class="col-sm-offset-3 col-sm-8">
                   <button data-bind="click: displayName" class="btn btn-warning">Display Name</button>
                   <button data-bind="click: setName" class="btn btn-warning">Set Name</button>
                 </div>

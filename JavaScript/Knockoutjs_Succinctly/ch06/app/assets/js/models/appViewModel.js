@@ -31,5 +31,8 @@ define(['jquery',
     self.hideDetails = function (target, event) {
       self.details('');
     };
+
+    self.primaryPhone = ko.observable('');
+    self.secondaryPhone = ko.observable('');
   };
 });
