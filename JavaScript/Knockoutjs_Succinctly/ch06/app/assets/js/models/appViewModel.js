@@ -34,5 +34,7 @@ define(['jquery',
 
     self.primaryPhone = ko.observable('');
     self.secondaryPhone = ko.observable('');
+
+    self.annoyMe = ko.observable(true);
   };
 });
