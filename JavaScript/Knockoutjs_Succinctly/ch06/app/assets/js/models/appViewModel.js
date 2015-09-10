@@ -36,5 +36,6 @@ define(['jquery',
     self.secondaryPhone = ko.observable('');
 
     self.annoyMe = ko.observable(true);
+    self.annoyTimes = ko.observableArray(['morning', 'evening']);
   };
 });
