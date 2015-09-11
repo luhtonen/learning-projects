@@ -46,11 +46,14 @@ define(['jquery',
     ]);
     self.selectedTime = ko.observable('In the afternoon');
 
+    var brats = {name: 'Brats', price: 7.99};
     self.products = ko.observableArray([
       {name: 'Beer', price: 10.99},
-      {name: 'Brats', price: 7.99},
+      brats,
       {name: 'Buns', price: 2.99}
     ]);
     self.favoriteProduct = ko.observable({});
+
+    self.favoriteProducts = ko.observableArray([brats]);
   };
 });
