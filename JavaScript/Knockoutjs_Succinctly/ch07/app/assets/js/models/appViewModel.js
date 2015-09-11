@@ -14,7 +14,10 @@ define(['jquery',
 
     self.loadUserData = function () {
       $.getJSON('/get-user-data', function (data) {
-        console.log(data.firstName);
+        self.firstName(data.firstName);
+        self.lastName(data.lastName);
+        self.activities(data.activities);
+        self.favoriteHobby(data.favoriteHobby);
       });
     };
   };
