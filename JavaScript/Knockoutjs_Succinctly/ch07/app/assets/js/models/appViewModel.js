@@ -11,5 +11,11 @@ define(['jquery',
     self.lastName = ko.observable('');
     self.activities = ko.observable([]);
     self.favoriteHobby = ko.observable('');
+
+    self.loadUserData = function () {
+      $.getJSON('/get-user-data', function (data) {
+        console.log(data.firstName);
+      });
+    };
   };
 });
