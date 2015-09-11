@@ -22,7 +22,10 @@ define(['jquery',
     };
 
     self.saveUserData = function () {
-      console.log(ko.toJSON(self));
+      var dataToSend = {userData: ko.toJSON(self)};
+      $.post('/save-user-data', dataToSend, function (data) {
+        console.log('Your data has been posted to the server: ' + data);
+      });
     };
   };
 });
