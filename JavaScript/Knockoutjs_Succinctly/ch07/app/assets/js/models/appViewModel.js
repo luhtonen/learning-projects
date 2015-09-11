@@ -20,5 +20,9 @@ define(['jquery',
         self.favoriteHobby(data.favoriteHobby);
       });
     };
+
+    self.saveUserData = function () {
+      console.log(ko.toJSON(self));
+    };
   };
 });
