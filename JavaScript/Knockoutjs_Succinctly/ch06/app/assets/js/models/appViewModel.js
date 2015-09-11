@@ -55,5 +55,7 @@ define(['jquery',
     self.favoriteProduct = ko.observable({});
 
     self.favoriteProducts = ko.observableArray([brats]);
+
+    self.phoneHasFocus = ko.observable(true);
   };
 });

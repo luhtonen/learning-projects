@@ -56,7 +56,7 @@
                 <label for="primaryPhone" class="col-sm-3 control-label">Primary phone</label>
 
                 <div class="col-sm-6">
-                  <input id="primaryPhone" class="form-control" data-bind="value: primaryPhone">
+                  <input id="primaryPhone" class="form-control" data-bind="value: primaryPhone, hasfocus: phoneHasFocus">
                 </div>
                 <span data-bind="visible: details() === 'primaryPhone'" class="label label-info">Primary phone number</span>
               </div>
