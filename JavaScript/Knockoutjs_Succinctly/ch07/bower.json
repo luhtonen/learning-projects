@@ -4,7 +4,7 @@
     "bootstrap-sass-official": "^3.2.0",
     "bower-knockout-mapping": "~2.5.0",
     "jquery": "^2.1.0",
-    "knockout.js": "^3.0.0",
+    "knockout": "^3.0.0",
     "requirejs": "^2.1.11"
   }
 }
