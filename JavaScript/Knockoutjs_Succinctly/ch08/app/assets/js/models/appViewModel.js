@@ -42,5 +42,16 @@ define(['jquery',
         });
       }
     };
+
+    ko.bindingHandlers.visibleFade = {
+      init: function (element, valueAccessor) {
+        var value = valueAccessor();
+        $(element).toggle(value());
+      },
+      update: function (element, valueAccessor) {
+        var value = valueAccessor();
+        value() ? $(element).fadeIn() : $(element).fadeOut();
+      }
+    };
   };
 });
