@@ -50,7 +50,18 @@
               </tbody>
             </table>
 
-            <button class="btn btn-info" data-bind="click: addProduct">Add Beer</button>
+            <div class="form-group">
+              <button class="btn btn-info" data-bind="click: addProduct">Add Beer</button>
+            </div>
+
+            <div class="form-group">
+              <input id="hasInstruction" data-bind="checked: hasInstructions" type="checkbox">
+              <label for="hasInstruction">Requires special handling instructions</label>
+            </div>
+
+            <div class="form-group">
+              <textarea data-bind="value: instructions, visible: hasInstructions"></textarea>
+            </div>
           </div>
         </div>
       </div>
