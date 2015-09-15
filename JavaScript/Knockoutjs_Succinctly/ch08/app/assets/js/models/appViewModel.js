@@ -28,5 +28,19 @@ define(['jquery',
     self.removeProduct = function (product) {
       self.items.destroy(product);
     };
+
+    self.showProduct = function (element) {
+      if (element.nodeType === 1) {
+        $(element).hide().fadeIn();
+      }
+    };
+
+    self.hideProduct = function (element) {
+      if (element.nodeType === 1) {
+        $(element).fadeOut(function () {
+          $(element).remove();
+        });
+      }
+    };
   };
 });
