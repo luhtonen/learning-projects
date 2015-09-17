@@ -1,0 +1,11 @@
+{
+  "name": "knockout-mapping",
+  "version": "0.0.1",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "bower-knockout-mapping": "~2.5.0",
+    "jquery": "~2.1.4",
+    "knockout": "~3.3.0"
+  }
+}
