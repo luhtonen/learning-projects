@@ -1,0 +1,10 @@
+{
+"firstName":"John",
+"lastName":"Smith",
+"activities":[
+    "Golf",
+    "Kayaking",
+    "Web Development"
+  ],
+  "favoriteHobby":"Golf"
+}
