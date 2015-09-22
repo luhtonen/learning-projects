@@ -38,3 +38,30 @@ list += "Kristian"
 list.each { println it }
 println list[-1]
 
+// Maps
+def emptyMap = [:]
+println emptyMap.getClass().name
+println emptyMap.size()
+
+def todos = ['a': 'Write the map section', 'b': 'Write the set section']
+println todos.size()
+println todos["a"]
+println todos."a"
+println todos.a
+println todos.getAt("b")
+println todos.get("b")
+println todos.get("c", "unknown")
+println todos
+
+todos.d = "Write ranges section"
+println todos.d
+todos.put('e', 'Write strings section')
+println todos.e
+todos.putAt 'f', 'Write closure section'
+println todos.f
+todos[null] = 'Nothing Set'
+println todos[null]
+
+todos.each { println "Key: ${it.key}, Value: ${it.value}" }
+todos.eachWithIndex { it, i -> println "${i} Key: ${it.key}, Value: ${it.value}" }
+todos.values().each { println it }
