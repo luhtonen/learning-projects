@@ -65,3 +65,39 @@ println todos[null]
 todos.each { println "Key: ${it.key}, Value: ${it.value}" }
 todos.eachWithIndex { it, i -> println "${i} Key: ${it.key}, Value: ${it.value}" }
 todos.values().each { println it }
+
+// Ranges
+def numRange = 0..9
+println numRange.size()
+numRange.each { print it }
+println ""
+println numRange.contains(5)
+
+def alphaRange = 'a'..'z'
+println alphaRange.size()
+println alphaRange[1]
+
+def exlusiveRange = 1..<10
+println exlusiveRange.size()
+exlusiveRange.each { print it }
+println ""
+println exlusiveRange.contains(10)
+
+def reverseRange = 9..0
+reverseRange.each { print it }
+println ""
+
+println "Java style for loop"
+for (int i = 0; i <= 9; i++) {
+    println i
+}
+
+println "Groovy style for loop"
+for (i in 0..9) {
+    println i
+}
+
+println "Groovy range loop"
+(0..9).each { i ->
+    println i
+}
