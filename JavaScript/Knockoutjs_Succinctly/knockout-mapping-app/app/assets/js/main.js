@@ -6,11 +6,7 @@ define(['jquery',
     '../../assets/js/models/appViewModel.js',
     'knockout.mapping',
     'jquery.bootstrap'
-    ], function ($, ko, AppViewModel) {
-
-  var UI = new AppViewModel();
-
-  ko.applyBindings(UI);
+    ], function ($) {
 
   $(function () {
     $('[data-toggle="tooltip"]').tooltip();
