@@ -29,9 +29,11 @@ println list.get(0)
 list.set(0, "Arno")
 println list.get(0)
 
-list.remove 2
+println "==="
+list.removeAt 2
 list -= "Lauri"
 list.each { println it }
+println "==="
 
 list.add "Lauri"
 list += "Kristian"
@@ -101,3 +103,34 @@ println "Groovy range loop"
 (0..9).each { i ->
     println i
 }
+
+// Sets
+def emptySet = [] as Set
+println emptySet.class.name
+println emptySet.size()
+
+list = ["Arno", "Arno"]
+def set = ["Arno", "Arno"] as Set
+println "List size: ${list.size()}, Set size: ${set.size()}"
+set.add "Lauri"
+set << "Kristian"
+println set
+
+set.each { println it }
+
+set.remove 2 // does not working, because Set is not ordered and don't have indexes
+set.removeElement "Kristian"
+set -= "Lauri"
+println "==="
+set.each { println it }
+println "==="
+set += "Lauri"
+set += "Kristian"
+set.each { println it }
+println "==="
+
+// Convert set to list
+list = set as List
+println list.class.name
+println set.asList().class.name
+println set.toList().class.name
