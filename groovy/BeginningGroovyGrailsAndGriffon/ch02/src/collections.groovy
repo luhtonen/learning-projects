@@ -119,9 +119,11 @@ println set
 set.each { println it }
 
 set.remove 2 // does not working, because Set is not ordered and don't have indexes
-set.removeElement "Kristian"
 set -= "Lauri"
 println "==="
+set.each { println it }
+println "==="
+set.removeElement "Kristian"
 set.each { println it }
 println "==="
 set += "Lauri"
