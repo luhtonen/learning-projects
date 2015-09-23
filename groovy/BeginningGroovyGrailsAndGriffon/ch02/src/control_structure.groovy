@@ -1,6 +1,6 @@
 // Logical Branching
 def x = 3.14
-def result = ""
+def result
 
 switch (x) {
     case "foo":
@@ -29,3 +29,15 @@ switch (x) {
 
 assert result == "Number"
 println result == "Number"
+
+// Looping
+for (i in 'Hello')
+    println i
+for (i in 0..10)
+    println i
+for (i in [1,2,3,4])
+    println i
+
+authors = [1:'Vishal', 2:'Jim', 3: 'Chris', 4:'Joseph']
+for (entry in authors)
+    println entry.key + ' ' + entry.value
