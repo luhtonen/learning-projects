@@ -41,3 +41,20 @@ for (i in [1,2,3,4])
 authors = [1:'Vishal', 2:'Jim', 3: 'Chris', 4:'Joseph']
 for (entry in authors)
     println entry.key + ' ' + entry.value
+
+// Exception Handling
+def method(bool) {
+    try {
+        if (bool) throw new Exception("foo")
+        1
+    } catch (e) {
+        2
+    } finally {
+        3
+    }
+}
+
+assert method(true) == 2
+println method(true)
+assert method(false) == 1
+println method(false)
