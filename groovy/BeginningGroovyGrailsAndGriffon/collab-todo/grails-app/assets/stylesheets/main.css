@@ -567,3 +567,16 @@ a.skip {
     position: absolute;
     left: -9999px;
 }
+
+#topbar {
+    text-align: left;
+    width: 778px;
+    margin: 0 auto;
+    padding: 5px 0;
+}
+#topbar #menu {
+    float: right;
+    width: 240px;
+    text-align: right;
+    font-size: 0.8em;
+}
