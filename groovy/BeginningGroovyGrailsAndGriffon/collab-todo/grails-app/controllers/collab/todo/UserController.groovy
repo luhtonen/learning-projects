@@ -20,4 +20,16 @@ class UserController {
             redirect(action: 'login')
         }
     }
+    def save() {
+        def user = new User()
+        user.properties = params
+        if (user.save()) {
+            flash.message = "user.saved.message"
+            flash.args = [user.firstName, user.lastName]
+            flash.defaultMsg = "User Saved"
+            redirect(action: 'show', id: user.id)
+        } else {
+            render(view: 'create', model: [user: user])
+        }
+    }
 }
