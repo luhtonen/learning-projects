@@ -1,0 +1,1 @@
+<span class="copyright">&copy; 2015 Eduard Luhtonen</span>
