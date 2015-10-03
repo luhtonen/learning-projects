@@ -15,7 +15,7 @@ class Todo {
     static belongsTo = [User, Category]
 
     static constraints = {
-        name(blank:false)
+        name(blank: false)
         createdDate()
         priority()
         status()
