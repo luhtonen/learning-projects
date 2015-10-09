@@ -7,6 +7,7 @@ target
 tmp
 dist
 .cache
+*.db
 
 *.class
 scala/PlayForScala/ch10/twitter/conf/personal.conf
