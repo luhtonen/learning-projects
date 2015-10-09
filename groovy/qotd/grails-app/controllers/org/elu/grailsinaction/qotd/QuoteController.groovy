@@ -2,6 +2,7 @@ package org.elu.grailsinaction.qotd
 
 class QuoteController {
 
+    static scaffold = true
     static defaultAction = "home"
 
     def home() {
