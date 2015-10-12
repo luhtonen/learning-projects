@@ -6,7 +6,7 @@ import grails.transaction.Transactional
 class QuoteService {
 
     def getStaticQuote() {
-        return new Quote(author: 'Anonymous', content: "Real Programmers don't eat much Quiche")
+        return new Quote(author: 'Anonymous', content: "Real Programmers don't eat much quiche")
     }
 
     def getRandomQuote() {

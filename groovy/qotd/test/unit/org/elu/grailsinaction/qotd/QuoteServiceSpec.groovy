@@ -15,6 +15,12 @@ class QuoteServiceSpec extends Specification {
     def cleanup() {
     }
 
-    void "test something"() {
+    void "static quote service always returns quiche quote"() {
+        when:
+        Quote staticQuote = service.staticQuote
+
+        then:
+        staticQuote.author == "Anonymous"
+        staticQuote.content == "Real Programmers don't eat much quiche"
     }
 }
