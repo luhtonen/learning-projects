@@ -18,6 +18,6 @@ class QuoteService {
         } else {
             randomQuote = getStaticQuote()
         }
-        [ quote: randomQuote ]
+        return randomQuote
     }
 }
