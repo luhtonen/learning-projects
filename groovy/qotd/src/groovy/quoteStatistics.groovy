@@ -23,8 +23,8 @@ Total: ${analyzer.quoteCount}
 
 Number of quotes by author:
 """
-        for (entry in analyzer.quoteCountPerAuthor) {
-            w.println " " + entry.key.padRight(20) + entry.value
+        analyzer.quoteCountPerAuthor.each { String author, int count ->
+            w.println " " + author.padRight(20) + count
         }
     }
     println reportFile.text
