@@ -1,3 +1,8 @@
-task hello << {
-    println 'hello, world'
+task hello
+
+hello << {
+    print 'hello, '
+}
+hello << {
+    println 'world'
 }
