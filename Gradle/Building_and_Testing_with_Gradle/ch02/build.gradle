@@ -12,3 +12,27 @@ initializeDatabase << { println 'connect to database' }
 initializeDatabase << { println 'update database schema' }
 initializeDatabase { print 'configuring ' }
 initializeDatabase { println 'database connection' }
+
+
+task createSchema << {
+    println 'create schema'
+}
+// Declare that world depends on hello
+// Preserves any previously defined dependencies as well
+task loadTestData {
+    dependsOn createSchema
+}
+// An alternative way to express the same dependency
+task loadTestData1 {
+    dependsOn << createSchema
+}
+// Do the same using single quote (which are usually optional)
+task loadTestData2 {
+    dependsOn 'createSchema'
+}
+// Explicitly call the method on the task object
+task loadTestData3
+loadTestData3.dependsOn createSchema
+
+// A shortcut for for declaring dependencies
+task loadTestData4(dependsOn: createSchema)
