@@ -33,6 +33,24 @@ task loadTestData2 {
 // Explicitly call the method on the task object
 task loadTestData3
 loadTestData3.dependsOn createSchema
-
 // A shortcut for for declaring dependencies
 task loadTestData4(dependsOn: createSchema)
+
+task compileTestClasses << {
+    println 'compile test classes'
+}
+// Declare dependencies one at a time
+task loadTestData5 {
+    dependsOn << compileTestClasses
+    dependsOn << createSchema
+}
+// Pass dependencies as a variable-length list
+task world1 {
+    dependsOn compileTestClasses, createSchema
+}
+// Explicitly call the method on the task object
+task world2
+world2.dependsOn compileTestClasses, createSchema
+// A shortcut for dependencies only
+// Note the Groovy list syntax
+task world3(dependsOn: [compileTestClasses, createSchema])
