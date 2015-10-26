@@ -83,4 +83,4 @@ setupDatabaseTests1 {
     doFirst {
         println 'drop database schema'
     }
-}doFirst(closure)
+}
