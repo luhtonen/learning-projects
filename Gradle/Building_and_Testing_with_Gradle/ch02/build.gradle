@@ -94,3 +94,11 @@ setupDatabaseTests2.doLast {
 setupDatabaseTests2.doLast {
     println 'update version table'
 }
+
+// onlyIf(closure)
+loadTestData.onlyIf {
+    System.properties['load.data'] == 'true'
+}
+// to run execute following command:
+// gradle -Dload.data=true loadTestData
+
