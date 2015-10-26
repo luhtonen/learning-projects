@@ -84,3 +84,13 @@ setupDatabaseTests1 {
         println 'drop database schema'
     }
 }
+
+task setupDatabaseTests2 {
+    println 'create database schema'
+}
+setupDatabaseTests2.doLast {
+    println 'load test data'
+}
+setupDatabaseTests2.doLast {
+    println 'update version table'
+}
