@@ -54,3 +54,33 @@ world2.dependsOn compileTestClasses, createSchema
 // A shortcut for dependencies only
 // Note the Groovy list syntax
 task world3(dependsOn: [compileTestClasses, createSchema])
+
+task setupDatabaseTests << {
+    // This is the task's existing action
+    println 'load test data'
+}
+setupDatabaseTests {
+    doFirst {
+        println 'create database schema from config'
+    }
+}
+setupDatabaseTests.doFirst {
+    println 'create database schema'
+}
+setupDatabaseTests.doFirst {
+    println 'drop database schema'
+}
+
+// Initial task definition (maybe not easily editable)
+task setupDatabaseTests1 << {
+    println 'load test data'
+}
+// Our changes to the task (in a place we can edit them)
+setupDatabaseTests1 {
+    doFirst {
+        println 'create dababase schema'
+    }
+    doFirst {
+        println 'drop database schema'
+    }
+}doFirst(closure)
