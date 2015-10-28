@@ -1,0 +1,32 @@
+// Copy
+task copyFiles(type: Copy) {
+    from 'resources'
+    into 'target'
+    include '**/*.xml', '**/*.txt', '**/*.properties'
+}
+
+// Jar
+apply plugin: 'java'
+
+task customJar(type: Jar) {
+    manifest {
+        attributes firstKey: 'firstValue', secondKey: 'secondValue'
+    }
+    archiveName = 'hello.jar'
+    destinationDir = file("${buildDir}/jars")
+    from sourceSets.main.classes
+}
+
+// JavaExec
+repositories {
+    mavenCentral()
+}
+dependencies {
+    runtime 'commons-codec:commons-codec:1.5'
+}
+task encode(type: JavaExec, dependsOn: classes) {
+    main = 'org.elu.gradle.example.commandline.MetaphoneEncoder'
+    args = "The rain in Spain falls mainly in the plain.".split().toList()
+    classpath sourceSets.main.classesDir
+    classpath configurations.runtime
+}
