@@ -1,0 +1,10 @@
+def helloName = 'Fird Birfle'
+int personAge = 43
+
+ant.importBuild 'build.xml'
+
+task hello << {
+    ant.echo "Hello ${helloName}. I believe you are ${personAge} years of age."
+
+    println "Application version ${ant.appversion}"
+}

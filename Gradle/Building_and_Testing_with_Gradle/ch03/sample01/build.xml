@@ -1,0 +1,4 @@
+<project>
+  <property name="buildoutput" location="output"/>
+  <property name="appversion" value="0.1"/>
+</project>
