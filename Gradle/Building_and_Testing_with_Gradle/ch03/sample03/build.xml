@@ -1,0 +1,5 @@
+<project>
+  <target name="helloViaTag">
+    <echo>hello from Ant</echo>
+  </target>
+</project>
