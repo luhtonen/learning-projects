@@ -1,1 +1,5 @@
 apply plugin: 'java'
+
+group = 'org.elu.gradle.samples'
+archivesBaseName = 'sample01-gradle'
+version = '0.0.1-SNAPSHOT'
