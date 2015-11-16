@@ -1,0 +1,21 @@
+configurations {
+    myPmd
+}
+
+dependencies {
+    myPmd group: 'pmd', name: 'pmd', version: '4.2.5'
+}
+
+repositories {
+    mavenCentral()
+}
+
+task checkThePMD << {
+    ant.taskdef(name: 'myPmdTask', classname: 'net.sourceforge.pmd.ant.PMDTask',
+            classpath: configurations.myPmd.asPath)
+    ant.myPmdTask(shortFilenames: 'true', failonruleviolation: 'true',
+            rulesetfiles: file('src/tools/pmd-basic-rules.xml').toURI().toString()) {
+        formatter(type: 'text', toConsole: true)
+        fileset(dir: 'src/main/java')
+    }
+}
