@@ -11,3 +11,5 @@ dist
 
 *.class
 scala/PlayForScala/ch10/twitter/conf/personal.conf
+
+Gradle/Building_and_Testing_with_Gradle/ch03/sample05/samples-from-gradle.zip
