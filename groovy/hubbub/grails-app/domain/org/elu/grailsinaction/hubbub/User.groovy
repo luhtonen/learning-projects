@@ -17,4 +17,8 @@ class User {
         }
         profile nullable: true
     }
+
+    static mapping = {
+        posts sort: 'dateCreated'
+    }
 }
