@@ -8,7 +8,7 @@ class User {
 
     static hasOne = [ profile: Profile ]
 
-    static hasMany = [posts: Post]
+    static hasMany = [posts: Post, tags: Tag]
 
     static constraints = {
         loginId size: 3..20, unique: true, blank: false
