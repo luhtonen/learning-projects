@@ -79,4 +79,25 @@ class UserIntegrationSpec extends IntegrationSpec {
         !chuck.hasErrors()
         chuck.save()
     }
+
+    def "Ensure a user can follow other users"() {
+        given: "A set of baseline users"
+        def arno = new User(loginId: 'arno', password:'password').save()
+        def lauri = new User(loginId: 'lauri', password:'password').save()
+        def kristian = new User(loginId: 'kristian', password:'password').save()
+        def karoliina = new User(loginId: 'karoliina', password:'password').save()
+
+        when: "Karoliina follows Arno, Lauri & Kristian, Kristian follows Lauri and Arno and Lauri follows Arno"
+        karoliina.addToFollowing(arno)
+        karoliina.addToFollowing(lauri)
+        karoliina.addToFollowing(kristian)
+        kristian.addToFollowing(arno)
+        kristian.addToFollowing(lauri)
+        lauri.addToFollowing(arno)
+
+        then: "Follower counts should match following people"
+        3 == karoliina.following.size()
+        2 == kristian.following.size()
+        1 == lauri.following.size()
+    }
 }
