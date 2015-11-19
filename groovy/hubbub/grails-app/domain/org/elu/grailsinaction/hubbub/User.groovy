@@ -8,6 +8,8 @@ class User {
 
     static hasOne = [ profile: Profile ]
 
+    static hasMany = [posts: Post]
+
     static constraints = {
         loginId size: 3..20, unique: true, blank: false
         password size: 6..8, blank: false, validator: { passwd, user ->
