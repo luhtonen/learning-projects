@@ -21,4 +21,8 @@ class User {
     static mapping = {
         posts sort: 'dateCreated'
     }
+
+    String getDisplayString() {
+        loginId
+    }
 }

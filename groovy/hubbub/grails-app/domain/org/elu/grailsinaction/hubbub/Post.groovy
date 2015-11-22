@@ -15,4 +15,8 @@ class Post {
     static mapping = {
         sort dateCreated: 'desc'
     }
+
+    String getDisplayString() {
+        content
+    }
 }
