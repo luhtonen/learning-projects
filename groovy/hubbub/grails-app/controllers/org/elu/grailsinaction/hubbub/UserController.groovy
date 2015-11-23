@@ -50,6 +50,17 @@ class UserController {
         respond userInstance
     }
 
+    def search() {}
+
+    def results (String loginId) {
+        def users = User.where {
+            loginId =~ "%${loginId}%"
+        }.list()
+        return [ users: users,
+                 term: params.loginId,
+                 totalUsers: User.count() ]
+    }
+
     @Transactional
     def update(User userInstance) {
         if (userInstance == null) {
