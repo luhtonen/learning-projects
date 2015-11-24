@@ -10,6 +10,11 @@ class BootStrap {
                     createSampleData()
                 }
             }
+            test {
+                if (!Post.count) {
+                    createSampleData()
+                }
+            }
         }
     }
 
