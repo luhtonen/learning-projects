@@ -60,6 +60,8 @@ class UserController {
                 totalUsers: User.count()]
     }
 
+    def advSearch() {}
+
     def advResults() {
         def profileProps = Profile.metaClass.properties*.name
 
