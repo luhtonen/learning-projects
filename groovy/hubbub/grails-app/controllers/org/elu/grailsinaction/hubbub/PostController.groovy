@@ -19,19 +19,14 @@ class PostController {
             user.addToPosts(post)
             User.withTransaction {
                 if (user.save()) {
-                    println 'saved ###'
-                    println 'post ' + post + ' with content ' + post?.content
                     flash.message = 'Successfully created post'
                 } else {
-                    println 'error'
                     flash.message = 'Invalid or empty post'
                 }
             }
         } else {
-            println 'user not found'
             flash.message = 'Invalid user id'
         }
-        println 'user ' + user.loginId + ' with posts ' + user.posts
         redirect(action: 'timeline', id: params.id)
     }
 }
