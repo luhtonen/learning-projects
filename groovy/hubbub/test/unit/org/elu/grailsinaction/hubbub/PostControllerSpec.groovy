@@ -28,4 +28,15 @@ class PostControllerSpec extends Specification {
         model.user.loginId == 'chuck_norris'
         model.user.posts.size() == 2
     }
+
+    def "Check that non-existent users handled with an error"() {
+        given: 'the id of non-existent user'
+        params.id = 'this-user-does-not-exist'
+
+        when: 'the timeline is invoked'
+        controller.timeline()
+
+        then: 'a 404 is sent to the browser'
+        response.status == 404
+    }
 }
