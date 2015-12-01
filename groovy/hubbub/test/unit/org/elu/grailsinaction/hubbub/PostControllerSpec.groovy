@@ -3,6 +3,7 @@ package org.elu.grailsinaction.hubbub
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
 import spock.lang.Specification
+import spock.lang.Unroll
 
 /**
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
@@ -82,5 +83,22 @@ class PostControllerSpec extends Specification {
 
         then: 'flash message contains error message'
         flash.message == 'Invalid user id'
+    }
+
+    @Unroll
+    def "Testing id of #suppliedId redirects to #expectedUrl"() {
+        given:
+        params.id = suppliedId
+
+        when: "Controller is invoked"
+        controller.index()
+
+        then:
+        response.redirectedUrl == expectedUrl
+
+        where:
+        suppliedId | expectedUrl
+        'joe_cool' | '/post/timeline/joe_cool'
+        null       | '/post/timeline/chuck_norris'
     }
 }
