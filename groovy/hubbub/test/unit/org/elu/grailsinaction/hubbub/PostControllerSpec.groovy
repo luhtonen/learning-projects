@@ -51,11 +51,36 @@ class PostControllerSpec extends Specification {
         params.content = 'Chuck Norris can unit test entire application with a single assert.'
 
         when: 'addPost is invoked'
-        def model = controller.addPost()
+        controller.addPost()
 
         then: 'our flash message and redirect confirms the success'
         flash.message == 'Successfully created post'
         response.redirectedUrl == "/post/timeline/${chuck.loginId}"
         Post.countByUser(chuck) == 1
+    }
+
+    def "Adding empty content"() {
+        given: 'A user with posts in the db'
+        User chuck = new User(loginId: 'chuck_norris', password: 'password').save(failOnError: true)
+
+        and: 'A loginId parameter'
+        params.id = chuck.loginId
+
+        when: 'addPost is invoked'
+        controller.addPost()
+
+        then: 'flash message contains error message'
+        flash.message == 'Invalid or empty post'
+    }
+
+    def "Adding post to non-existing user"() {
+        given: 'An invalid loginId'
+        params.id = 'non-existing-user'
+
+        when: 'addPost is invoked'
+        controller.addPost()
+
+        then: 'flash message contains error message'
+        flash.message == 'Invalid user id'
     }
 }
