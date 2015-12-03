@@ -20,10 +20,10 @@ class PostControllerSpec extends Specification {
         chuck.save(failOnError: true)
 
         and: 'A loginId parameters'
-        params.id = chuck.loginId
+        def id = chuck.loginId
 
         when: 'A timeline is invoked'
-        def model = controller.timeline()
+        def model = controller.timeline(id)
 
         then: 'the user is in the returned model'
         model.user.loginId == 'chuck_norris'
@@ -32,54 +32,54 @@ class PostControllerSpec extends Specification {
 
     def "Check that non-existent users handled with an error"() {
         given: 'the id of non-existent user'
-        params.id = 'this-user-does-not-exist'
+        def id = 'this-user-does-not-exist'
 
         when: 'the timeline is invoked'
-        controller.timeline()
+        controller.timeline(id)
 
         then: 'a 404 is sent to the browser'
         response.status == 404
     }
 
     def "Adding a valid new post to the timeline"() {
-        given: 'A user with posts in the db'
-        User chuck = new User(loginId: 'chuck_norris', password: 'password').save(failOnError: true)
+        given: 'a mock post service'
+        def mockPostService = Mock(PostService)
+        1 * mockPostService.createPost(_, _) >> new Post(content: "Mock Post")
+        controller.postService = mockPostService
 
-        and: 'A loginId parameter'
-        params.id = chuck.loginId
+        when: 'controller is invoked'
+        def result = controller.addPost('joe_cool', 'Posting up a storm')
 
-        and: 'Some content for the post'
-        params.content = 'Chuck Norris can unit test entire application with a single assert.'
-
-        when: 'addPost is invoked'
-        controller.addPost()
-
-        then: 'our flash message and redirect confirms the success'
-        flash.message == 'Successfully created post'
-        response.redirectedUrl == "/post/timeline/${chuck.loginId}"
-        Post.countByUser(chuck) == 1
+        then: 'redirected to timeline, flash message tells us all is well'
+        flash.message ==~ /Added new post: Mock.*/
+        response.redirectedUrl == '/post/timeline/joe_cool'
     }
 
     def "Adding empty content"() {
-        given: 'A user with posts in the db'
-        User chuck = new User(loginId: 'chuck_norris', password: 'password').save(failOnError: true)
-
-        and: 'A loginId parameter'
-        params.id = chuck.loginId
+        given: 'a mock post service'
+        def post = null
+        def mockPostService = Mock(PostService)
+        1 * mockPostService.createPost(_, _) >> {throw new PostException(message: 'Invalid or empty post', post: post)}
+        controller.postService = mockPostService
 
         when: 'addPost is invoked'
-        controller.addPost()
+        controller.addPost('joe_cool', post)
 
         then: 'flash message contains error message'
         flash.message == 'Invalid or empty post'
     }
 
     def "Adding post to non-existing user"() {
-        given: 'An invalid loginId'
-        params.id = 'non-existing-user'
+        given: 'a mock post service'
+        def mockPostService = Mock(PostService)
+        1 * mockPostService.createPost(_, _) >> {throw new PostException(message: 'Invalid user id')}
+        controller.postService = mockPostService
+
+        and: 'An invalid loginId'
+        def id = 'non-existing-user'
 
         when: 'addPost is invoked'
-        controller.addPost()
+        controller.addPost(id, 'content')
 
         then: 'flash message contains error message'
         flash.message == 'Invalid user id'
@@ -91,7 +91,7 @@ class PostControllerSpec extends Specification {
         params.id = suppliedId
 
         when: "Controller is invoked"
-        controller.index()
+        controller.home()
 
         then:
         response.redirectedUrl == expectedUrl
