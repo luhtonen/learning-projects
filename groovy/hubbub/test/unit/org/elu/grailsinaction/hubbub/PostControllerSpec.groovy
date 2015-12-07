@@ -48,7 +48,7 @@ class PostControllerSpec extends Specification {
         controller.postService = mockPostService
 
         when: 'controller is invoked'
-        def result = controller.addPost('joe_cool', 'Posting up a storm')
+        controller.addPost('joe_cool', 'Posting up a storm')
 
         then: 'redirected to timeline, flash message tells us all is well'
         flash.message ==~ /Added new post: Mock.*/
