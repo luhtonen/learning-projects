@@ -41,7 +41,7 @@ class UserController {
             if (user.validate()) {
                 user.save()
                 flash.message = 'Successfully created user'
-                redirect(uri:Add '/')
+                redirect(uri: '/')
             } else {
                 flash.message = 'Error registering user'
                 return [ user: user ]
