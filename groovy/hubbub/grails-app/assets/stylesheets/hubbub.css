@@ -132,3 +132,10 @@ dd {
     margin: 1em;
     font-weight: bold;
 }
+
+.profilePic {
+    border: 1px dotted gray;
+    background: lightyellow;
+    padding: 1em;
+    font-size: 1em;
+}
