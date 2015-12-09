@@ -32,7 +32,7 @@ class UserController {
                 }
             }
         }
-        [ profiles: profiles ]
+        [profiles: profiles]
     }
 
     def register() {
@@ -44,8 +44,51 @@ class UserController {
                 redirect(uri: '/')
             } else {
                 flash.message = 'Error registering user'
-                return [ user: user ]
+                return [user: user]
             }
         }
+    }
+
+    def register2(UserRegistrationCommand urc) {
+        if (urc.hasErrors()) {
+            render view: 'register', model: [ user: urc ]
+        } else {
+            def user = new User(urc.properties)
+            user.profile = new Profile(urc.properties)
+            if (user.validate() && user.save()) {
+                flash.message = "Welcome aboard: ${urc.fullName ?: urc.loginId}"
+                redirect(uri: '/')
+            } else {
+                return [ user: urc ]
+            }
+        }
+    }
+}
+
+class UserRegistrationCommand {
+    String loginId
+    String password
+    String passwordRepeat
+    byte[] photo
+    String fullName
+    String bio
+    String homepage
+    String email
+    String timezone
+    String country
+    String jabberAddress
+
+    static constraints = {
+        importFrom Profile
+        importFrom User
+        password(size: 6..8, blank: false,
+                validator: {
+                    passwd, urc ->
+                    return passwd != urc.loginId
+                })
+        passwordRepeat(nullable: false,
+                validator: { passwd2, urc ->
+                    return passwd2 == urc.password
+                })
     }
 }
