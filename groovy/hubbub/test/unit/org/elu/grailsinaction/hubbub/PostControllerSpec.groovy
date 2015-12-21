@@ -9,7 +9,7 @@ import spock.lang.Unroll
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
 @TestFor(PostController)
-@Mock([User,Post])
+@Mock([User,Post,LameSecurityFilters])
 class PostControllerSpec extends Specification {
 
     void "Get a users timeline given their id"() {
@@ -100,5 +100,15 @@ class PostControllerSpec extends Specification {
         suppliedId | expectedUrl
         'joe_cool' | '/post/timeline/joe_cool'
         null       | '/post/timeline/chuck_norris'
+    }
+
+    def "Exercising security filter for unauthenticated user"() {
+        when:
+        withFilters(action: 'addPost') {
+            controller.addPost('edufinn', 'A first post')
+        }
+
+        then:
+        response.redirectedUrl == '/login/form'
     }
 }

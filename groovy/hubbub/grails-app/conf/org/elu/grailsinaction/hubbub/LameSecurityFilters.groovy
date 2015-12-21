@@ -9,6 +9,7 @@ class LameSecurityFilters {
                     session.user = User.findByLoginId(params.impersonateId)
                 }
                 if (!session.user) {
+                    println 'unauthenticated user'
                     redirect(controller: 'login', action: 'form')
                 }
             }
