@@ -25,4 +25,4 @@ let routes = (
     </Route>
 );
 
-ReactDOM.render(<Router>{routes}</Router>,  document.body);
+ReactDOM.render(<Router>{routes}</Router>, document.getElementById('react'));
