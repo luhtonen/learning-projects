@@ -7,7 +7,7 @@ import LoginHandler from './components/Login.js';
 let App = React.createClass({
     render() {
         return (
-            <div class="nav">
+            <div className="nav">
                 <Link to="app">Home</Link>
                 <Link to="login">Login</Link>
 
