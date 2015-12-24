@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Router from 'react-router';
 import { DefaultRoute, Link, Route, RouteHandler } from 'react-router';
 
@@ -24,6 +25,4 @@ let routes = (
     </Route>
 );
 
-Router.run(routes, function(Handler) {
-    React.render(<Handler/>, document.body);
-});
+ReactDOM.render(<Router>{routes}</Router>,  document.body);
