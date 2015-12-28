@@ -19,7 +19,7 @@ store.dispatch({
         }
     }
 });
-a
+
 const routes = <Route component={App}>
     <Route path="/results" component={Results} />
     <Route path="/" component={Voting}/>
