@@ -108,7 +108,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) next();
-  else res.send(401);
+  else res.sendStatus(401);
 }
 
 app.use(function(req, res, next) {
@@ -215,7 +215,7 @@ app.post('/api/shows', function(req, res, next) {
         }
         return next(err);
       }
-      res.send(200);
+      res.sendStatus(200);
     });
   });
 });
@@ -239,6 +239,29 @@ app.post('/api/signup', function(req, res, next) {
 app.get('/api/logout', function(req, res, next) {
   req.logout();
   res.sendStatus(200);
+});
+
+app.post('/api/subscribe', ensureAuthenticated, function(req, res, next) {
+  Show.findById(req.body.showId, function(err, show) {
+    if (err) return next(err);
+    show.subscribers.push(req.user.id);
+    show.save(function(err) {
+      if (err) return next(err);
+      res.sendStatus(200);
+    });
+  });
+});
+
+app.post('/api/unsubscribe', ensureAuthenticated, function(req, res, next) {
+  Show.findById(req.body.showId, function(err, show) {
+    if (err) return next(err);
+    var index = show.subscribers.indexOf(req.user.id);
+    show.subscribers.splice(index, 1);
+    show.save(function(err) {
+      if (err) return next(err);
+      res.sendStatus(200);
+    });
+  });
 });
 
 app.get('*', function(req, res) {
