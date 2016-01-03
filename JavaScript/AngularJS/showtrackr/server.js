@@ -157,7 +157,7 @@ app.post('/api/shows', function(req, res, next) {
         if (error) return next(error);
         parser.parseString(body, function(err, result) {
           if (!result.data.series) {
-            return res.send(404, { message: req.body.showName + ' was not found.' });
+            return res.status(404).send({ message: req.body.showName + ' was not found.' });
           }
           var seriesId = result.data.series.seriesid || result.data.series[0].seriesid;
           callback(err, seriesId);
@@ -211,7 +211,7 @@ app.post('/api/shows', function(req, res, next) {
     show.save(function(err) {
       if (err) {
         if (err.code == 11000) {
-          return res.send(409, { message: show.name + ' already exists.' });
+          return res.status(409).send({ message: show.name + ' already exists.' });
         }
         return next(err);
       }
@@ -270,7 +270,7 @@ app.get('*', function(req, res) {
 
 app.use(function(err, req, res, next) {
   console.error(err.stack);
-  res.send(500, { message: err.message });
+  res.status(500).send({ message: err.message });
 });
 
 app.listen(app.get('port'), function () {
