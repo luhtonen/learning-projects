@@ -19,6 +19,7 @@ var bcrypt = require('bcryptjs');
 var agenda = require('agenda')({ db: { address: 'localhost:27017/test' } });
 var sugar = require('sugar');
 var nodemailer = require('nodemailer');
+var compress = require('compression');
 
 /* Show database schema */
 var showSchema = new mongoose.Schema({
@@ -99,6 +100,7 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, function(email, passw
 var app = express();
 
 app.set('port', process.env.PORT || 3000);
+app.use(compress());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -108,7 +110,13 @@ app.use(session({ secret: 'keyboard cat',
   resave: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: 86400000 }));
+app.use(function (req, res, next) {
+  if (req.user) {
+    res.cookie('user', JSON.stringify(req.user));
+  }
+  next();
+});
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) next();
@@ -314,7 +322,7 @@ agenda.define('send email alert', function(job, done) {
   });
 });
 
-agenda.start();
+//agenda.start();
 
 agenda.on('start', function(job) {
   console.log("Job %s starting", job.attrs.name);
