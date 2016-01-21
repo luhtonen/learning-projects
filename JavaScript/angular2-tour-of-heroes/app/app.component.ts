@@ -4,8 +4,10 @@
  * Created by luhtonen on 08/01/16.
  */
 import {Component} from 'angular2/core';
+import {OnInit} from 'angular2/core';
 import {Hero} from './hero';
 import {HeroDetailComponent} from './hero-detail.component';
+import {HeroService} from './hero.service';
 
 @Component({
     selector: 'my-app',
@@ -69,26 +71,25 @@ import {HeroDetailComponent} from './hero-detail.component';
         border-radius: 4px 0px 0px 4px;
       }
     `],
-    directives: [HeroDetailComponent]
+    directives: [HeroDetailComponent],
+    providers: [HeroService]
 })
-export class AppComponent {
-    public heroes = HEROES;
+
+export class AppComponent implements OnInit {
+    public heroes: Hero[];
     public title = 'Tour of Heroes';
     public selectedHero: Hero;
     onSelect(hero: Hero) {
         this.selectedHero = hero;
     }
-}
 
-var HEROES:Hero[] = [
-    {"id": 11, "name": "Mr. Nice"},
-    {"id": 12, "name": "Narco"},
-    {"id": 13, "name": "Bombasto"},
-    {"id": 14, "name": "Celeritas"},
-    {"id": 15, "name": "Magneta"},
-    {"id": 16, "name": "RubberMan"},
-    {"id": 17, "name": "Dynama"},
-    {"id": 18, "name": "Dr IQ"},
-    {"id": 19, "name": "Magma"},
-    {"id": 20, "name": "Tornado"}
-];
+    constructor(private _heroService: HeroService) {}
+
+    getHeroes() {
+        this.heroes = this._heroService.getHeroes();
+    }
+
+    ngOnInit() {
+        this.getHeroes();
+    }
+}
