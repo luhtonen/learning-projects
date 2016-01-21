@@ -3,8 +3,7 @@
  *
  * Created by luhtonen on 08/01/16.
  */
-import {Component} from 'angular2/core';
-import {OnInit} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {Hero} from './hero';
 import {HeroDetailComponent} from './hero-detail.component';
 import {HeroService} from './hero.service';
@@ -79,17 +78,18 @@ export class AppComponent implements OnInit {
     public heroes: Hero[];
     public title = 'Tour of Heroes';
     public selectedHero: Hero;
-    onSelect(hero: Hero) {
-        this.selectedHero = hero;
-    }
 
     constructor(private _heroService: HeroService) {}
 
     getHeroes() {
-        this.heroes = this._heroService.getHeroes();
+        this._heroService.getHeroes().then(heroes => this.heroes = heroes);
     }
 
     ngOnInit() {
         this.getHeroes();
+    }
+
+    onSelect(hero: Hero) {
+        this.selectedHero = hero;
     }
 }
