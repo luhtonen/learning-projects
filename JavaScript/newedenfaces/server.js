@@ -10,6 +10,9 @@ var React = require('react');
 var ReactDOM = require('react-dom/server');
 var Router = require('react-router');
 var routes = require('./app/routes');
+var mongoose = require('mongoose');
+var Character = require('./models/character');
+var config = require('./config');
 
 var app = express();
 
@@ -33,6 +36,11 @@ app.use(function(req, res) {
       res.status(404).send('Page Not Found')
     }
   });
+});
+
+mongoose.connect(config.database);
+mongoose.connection.on('error', function() {
+  console.info('Error: Could not connect to MongoDB. Did you forget to run `mongod`?');
 });
 
 /**
