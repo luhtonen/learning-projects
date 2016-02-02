@@ -14,7 +14,7 @@ class FooterActions {
         this.actions.getTopCharactersSuccess(data);
       })
       .fail((jqXhr) => {
-        this.actions.getTopcharactersFail(jqXhr);
+        this.actions.getTopCharactersFail(jqXhr);
       });
   }
 }
