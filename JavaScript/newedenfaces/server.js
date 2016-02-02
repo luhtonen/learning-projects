@@ -38,7 +38,7 @@ app.use(function(req, res) {
 /**
  * Socket.io stuff.
  */
-var server = require('http').createServer(app);
+var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var onlineUsers = 0;
 
@@ -53,6 +53,6 @@ io.sockets.on('connection', function (socket) {
   });
 });
 
-app.listen(app.get('port'), function () {
+server.listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'));
 });
