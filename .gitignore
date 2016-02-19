@@ -9,7 +9,6 @@ dist
 .cache
 *.db
 
-build
 *.class
 
 .gradle
