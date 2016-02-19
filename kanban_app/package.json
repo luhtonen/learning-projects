@@ -1,0 +1,17 @@
+{
+  "name": "kanban_app",
+  "version": "0.0.1",
+  "description": "SurviveJS - Webpack and React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "javascript",
+    "webpack",
+    "react",
+    "survivejs"
+  ],
+  "author": "Eduard Luhtonen <luhtonen@gmail.com> (http://luhtonen.github.io/)",
+  "license": "MIT"
+}
