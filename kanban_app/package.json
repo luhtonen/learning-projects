@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
+    "start": "webpack-dev-server --content-base build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -16,6 +17,7 @@
   "author": "Eduard Luhtonen <luhtonen@gmail.com> (http://luhtonen.github.io/)",
   "license": "MIT",
   "devDependencies": {
-    "webpack": "^1.12.13"
+    "webpack": "^1.12.13",
+    "webpack-dev-server": "^1.14.1"
   }
 }
