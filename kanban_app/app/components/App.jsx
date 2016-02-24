@@ -30,11 +30,17 @@ export default class App extends React.Component {
     return (
       <div>
         <button onClick={this.addNote}>+</button>
-        <Notes notes={notes} onEdit={this.editNote}/>
+        <Notes notes={notes}
+               onEdit={this.editNote}
+               onDelete={this.deleteNote}/>
       </div>
     );
   }
-
+  deleteNote  = (id) => {
+    this.setState({
+      notes: this.state.notes.filter(note => note.id !== id)
+    });
+  };
   // We are using an experimental feature known as property initializer here.
   // It allows us to bind the method `this` to point at our *App* instance.
   //
