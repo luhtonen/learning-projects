@@ -6,6 +6,10 @@ class NoteStore {
   constructor() {
     this.bindActions(NoteActions);
     this.notes = [];
+
+    this.exportPublicMethods({
+      getNotesByIds: this.getNotesByIds.bind(this)
+    });
   }
 
   create(note) {
@@ -14,23 +18,16 @@ class NoteStore {
     this.setState({
       notes: notes.concat(note)
     });
+    return note;
   }
 
   update(updatedNote) {
     const notes = this.notes.map(note => {
       if (note.id === updatedNote.id) {
-        // Object.assign is used to patch the note data here. It
-        // mutates target (first parameter). In order to avoid that,
-        // I use {} as its target and apply data on it.
-        //
-        // Example: {}, {a: 5, b: 3}, {a: 17} -> {a: 17, b: 3}
-        //
-        // You can pass as many objects to the method as you want.
         return Object.assign({}, note, updatedNote);
       }
       return note;
     });
-    // This is same as `this.setState({notes: notes})`
     this.setState({notes});
   }
 
@@ -38,6 +35,12 @@ class NoteStore {
     this.setState({
       notes: this.notes.filter(note => note.id !== id)
     });
+  }
+
+  getNotesByIds(ids) {
+    return (ids || []).map(
+      id => this.notes.filter(note => note.id === id)
+    ).filter(a => a.length).map(a => a[0]);
   }
 }
 
