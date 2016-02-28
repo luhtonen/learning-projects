@@ -3,6 +3,9 @@ const merge = require('webpack-merge');
 const webpack = require('webpack');
 const NpmInstallPlugin = require('npm-install-webpack-plugin');
 
+// Load *package.json* so we can use `dependencies` from there
+const pkg = require('./package.json');
+
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
   app: path.join(__dirname, 'app'),
@@ -19,7 +22,7 @@ const common = {
   },
   output: {
     path: PATHS.build,
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   // Add resolve.extensions.
   // '' is needed to allow imports without an extension.
@@ -86,5 +89,33 @@ if (TARGET === 'start' || !TARGET) {
 }
 
 if (TARGET === 'build' || !TARGET) {
-  module.exports = merge(common, {});
+  module.exports = merge(common, {
+    entry: {
+      vendor: Object.keys(pkg.dependencies).filter(function (v) {
+        // Exclude alt-utils as it won't work with this setup due to the way the package has
+        // been designed (no package.json main).
+        return v !== 'alt-utils';
+      })
+    },
+    output: {
+      path: PATHS.build,
+      filename: '[name].[chunkhash].js',
+      chunkFilename: '[chunkhash].js'
+    },
+    plugins: [
+      // Extract vendor and manifest files
+      new webpack.optimize.CommonsChunkPlugin({
+        names: ['vendor', 'manifest']
+      }),
+      // Setting DefinePlugin affects React library size!
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': '"production"'
+      }),
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false
+        }
+      })
+    ]
+  });
 }
